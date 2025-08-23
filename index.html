@@ -3,81 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Imad Ali Syed - Hacker Portfolio</title>
+  <title>Imad Ali Syed - Home</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Fira Code', monospace;
-      background-color: #0f111a;
-      color: #c5c8c6;
-    }
-    .neon {
-      color: #00ffea;
-      text-shadow:
-        0 0 5px #00ffea,
-        0 0 10px #00ffea,
-        0 0 20px #00ffea;
-    }
-    a:hover {
-      color: #ff007f;
-    }
+    body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #121212; color: #e0e0e0; }
+    .hero-bg { background: url('assets/images/hero.jpg') center/cover no-repeat; }
   </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="pt-24">
 
-  <!-- Header -->
-  <header class="text-center p-8 border-b border-gray-800">
-    <h1 class="text-4xl md:text-6xl neon font-bold">Imad Ali Syed</h1>
-    <p class="mt-2 text-xl text-gray-400">Hacker | Web Developer | Cyber Enthusiast</p>
+  <!-- Navbar -->
+  <!-- Copy header snippet here -->
+  <header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
+    <div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div>
+    <nav class="space-x-6">
+      <a href="index.html" class="hover:text-purple-400">Home</a>
+      <a href="about.html" class="hover:text-purple-400">About</a>
+      <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a>
+      <a href="skills.html" class="hover:text-purple-400">Skills</a>
+      <a href="blog.html" class="hover:text-purple-400">Blog</a>
+      <a href="contact.html" class="hover:text-purple-400">Contact</a>
+    </nav>
   </header>
-
-  <!-- About Me -->
-  <section class="max-w-4xl mx-auto p-6 mt-8">
-    <h2 class="text-2xl neon mb-4">About Me</h2>
-    <p class="text-gray-300 leading-relaxed">
-      I’m a self-taught hacker and developer, passionate about security, coding, and building
-      sleek, modern websites. I love exploring systems, writing scripts, and creating digital art in code.
-    </p>
-  </section>
-
-  <!-- Projects -->
-  <section class="max-w-4xl mx-auto p-6 mt-8">
-    <h2 class="text-2xl neon mb-6">Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="bg-gray-900 p-4 rounded shadow hover:bg-gray-800 transition">
-        <h3 class="text-xl neon mb-2">HackSim</h3>
-        <p class="text-gray-300">A realistic hacking simulator built for learning security concepts.</p>
-        <a href="#" class="text-blue-400 hover:underline mt-2 inline-block">View Project</a>
-      </div>
-      <div class="bg-gray-900 p-4 rounded shadow hover:bg-gray-800 transition">
-        <h3 class="text-xl neon mb-2">CyberArt</h3>
-        <p class="text-gray-300">Generative digital art created using code and algorithms.</p>
-        <a href="#" class="text-blue-400 hover:underline mt-2 inline-block">View Project</a>
-      </div>
-      <div class="bg-gray-900 p-4 rounded shadow hover:bg-gray-800 transition">
-        <h3 class="text-xl neon mb-2">Terminal Portfolio</h3>
-        <p class="text-gray-300">A portfolio website designed to look like a hacker’s terminal interface.</p>
-        <a href="#" class="text-blue-400 hover:underline mt-2 inline-block">View Project</a>
-      </div>
-      <div class="bg-gray-900 p-4 rounded shadow hover:bg-gray-800 transition">
-        <h3 class="text-xl neon mb-2">Script Vault</h3>
-        <p class="text-gray-300">A collection of useful scripts and tools for penetration testing.</p>
-        <a href="#" class="text-blue-400 hover:underline mt-2 inline-block">View Project</a>
-      </div>
+  
+  
+  <!-- Hero Section -->
+  <section class="hero-bg h-screen flex items-center justify-center text-center">
+    <div class="bg-gray-900 bg-opacity-70 p-8 rounded" data-aos="fade-up">
+      <h1 class="text-5xl md:text-7xl font-bold text-purple-500 mb-4">Imad Ali Syed</h1>
+      <p class="text-xl md:text-2xl text-gray-300 mb-6">Cybersecurity Enthusiast</p>
+      <a href="about.html" class="bg-purple-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-purple-400 transition">Learn More</a>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section class="max-w-4xl mx-auto p-6 mt-8 mb-12">
-    <h2 class="text-2xl neon mb-4">Contact</h2>
-    <p class="text-gray-300 mb-2">Email: <a href="mailto:imad@imadalisyed.com" class="underline">imad@imadalisyed.com</a></p>
-    <p class="text-gray-300">GitHub: <a href="https://github.com/Imad-ali-syed" class="underline">github.com/Imad-ali-syed</a></p>
+  <!-- Quick Intro Section -->
+  <section class="max-w-5xl mx-auto px-6 py-16" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold mb-6 text-purple-500">Welcome!</h2>
+    <p class="text-gray-300 leading-relaxed text-lg">I’m Imad Ali Syed, a professional developer passionate about building sleek, modern, and secure digital experiences. Explore my work, skills, and projects below.</p>
   </section>
 
-  <!-- Footer -->
-  <footer class="text-center text-gray-500 p-6 border-t border-gray-800">
-    © 2025 Imad Ali Syed
-  </footer>
-
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
 </body>
 </html>

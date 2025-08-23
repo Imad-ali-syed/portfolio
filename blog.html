@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Imad Ali Syed</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-300 pt-24">
+
+  <!-- Navbar -->
+  <header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
+    <div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div>
+    <nav class="space-x-6">
+      <a href="index.html" class="hover:text-purple-400">Home</a>
+      <a href="about.html" class="hover:text-purple-400">About</a>
+      <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a>
+      <a href="skills.html" class="hover:text-purple-400">Skills</a>
+      <a href="blog.html" class="hover:text-purple-400">Blog</a>
+      <a href="contact.html" class="hover:text-purple-400">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Blog Section -->
+  <section class="max-w-6xl mx-auto px-6 py-16" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold mb-10 text-purple-500">Blog / Thoughts</h2>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform">
+        <h3 class="text-xl font-semibold mb-2 text-purple-400">Learning Web Security</h3>
+        <p class="text-gray-300 mb-4">A guide on ethical hacking and building secure web applications.</p>
+        <a href="#" class="text-purple-500 hover:underline">Read More →</a>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform">
+        <h3 class="text-xl font-semibold mb-2 text-purple-400">JavaScript Tips</h3>
+        <p class="text-gray-300 mb-4">Advanced JavaScript patterns and best practices for developers.</p>
+        <a href="#" class="text-purple-500 hover:underline">Read More →</a>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform">
+        <h3 class="text-xl font-semibold mb-2 text-purple-400">Portfolio Design</h3>
+        <p class="text-gray-300 mb-4">Designing clean and professional personal websites that stand out.</p>
+        <a href="#" class="text-purple-500 hover:underline">Read More →</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+</body>
+</html>

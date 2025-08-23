@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Imad Ali Syed</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-300 pt-24">
+
+  <!-- Navbar -->
+  <header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
+    <div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div>
+    <nav class="space-x-6">
+      <a href="index.html" class="hover:text-purple-400">Home</a>
+      <a href="about.html" class="hover:text-purple-400">About</a>
+      <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a>
+      <a href="skills.html" class="hover:text-purple-400">Skills</a>
+      <a href="blog.html" class="hover:text-purple-400">Blog</a>
+      <a href="contact.html" class="hover:text-purple-400">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="max-w-4xl mx-auto px-6 py-16" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold mb-10 text-purple-500">Contact Me</h2>
+
+    <form class="bg-gray-800 p-8 rounded-lg shadow-lg space-y-6">
+      <div>
+        <label class="block mb-2" for="name">Name</label>
+        <input class="w-full p-3 rounded bg-gray-900 border border-gray-700" type="text" id="name" placeholder="Your Name" required>
+      </div>
+      <div>
+        <label class="block mb-2" for="email">Email</label>
+        <input class="w-full p-3 rounded bg-gray-900 border border-gray-700" type="email" id="email" placeholder="Your Email" required>
+      </div>
+      <div>
+        <label class="block mb-2" for="message">Message</label>
+        <textarea class="w-full p-3 rounded bg-gray-900 border border-gray-700" id="message" rows="5" placeholder="Your Message" required></textarea>
+      </div>
+      <button type="submit" class="bg-purple-500 hover:bg-purple-400 text-black font-semibold px-6 py-3 rounded-lg transition">Send Message</button>
+    </form>
+
+    <div class="mt-10 text-gray-400">
+      <p>Email: <a href="mailto:imad@imadalisyed.com" class="text-purple-500 hover:underline">imad@imadalisyed.com</a></p>
+      <p>GitHub: <a href="https://github.com/Imad-ali-syed" class="text-purple-500 hover:underline">github.com/Imad-ali-syed</a></p>
+      <p>LinkedIn: <a href="#" class="text-purple-500 hover:underline">linkedin.com/in/imadalisyed</a></p>
+    </div>
+  </section>
+
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+</body>
+</html>
