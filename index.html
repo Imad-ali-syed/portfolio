@@ -1,12 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imad Ali Syed - Hacker Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Fira Code', monospace;
+      background-color: #0f111a;
+      color: #c5c8c6;
+    }
+    .neon {
+      color: #00ffea;
+      text-shadow:
+        0 0 5px #00ffea,
+        0 0 10px #00ffea,
+        0 0 20px #00ffea;
+    }
+    a:hover {
+      color: #ff007f;
+    }
+  </style>
 </head>
-<body>
-    <h1>Welcome to My Website!</h1>
-    <p>This is hosted on GitHub Pages.</p>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="text-center p-8 border-b border-gray-800">
+    <h1 class="text-4xl md:text-6xl neon font-bold">Imad Ali Syed</h1>
+    <p class="mt-2 text-xl text-gray-400">Hacker | Web Developer | Cyber Enthusiast</p>
+  </header>
+
+  <!-- About Me -->
+  <section class="max-w-4xl mx-auto p-6 mt-8">
+    <h2 class="text-2xl neon mb-4">About Me</h2>
+    <p class="text-gray-300 leading-relaxed">
+      I’m a self-taught hacker and developer, passionate about security, coding, and building
+      sleek, modern websites. I love exploring systems, writing scripts, and creating digital art in code.
+    </p>
+  </section>
+
+  <!-- Projects -->
+  <section class="max-w-4xl mx-auto p-6 mt-8">
+    <h2 class="text-2xl neon mb-6">Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-gray-900 p-4 rounded shadow hover:bg-gray-800 transition">
+        <h3 class="text-xl neon mb-2">HackSim</h3>
+        <p class="text-gray-300">A realistic hacking simulator built for learning security concepts.</p>
+        <a href="#" class="text-blue-400 hover:underline mt-2 inline-block">View Project</a>
+      </div>
+      <div class="bg-gray-900 p-4 rounded shadow hover:bg-gray-800 transition">
+        <h3 class="text-xl neon mb-2">CyberArt</h3>
+        <p class="text-gray-300">Generative digital art created using code and algorithms.</p>
+        <a href="#" class="text-blue-400 hover:underline mt-2 inline-block">View Project</a>
+      </div>
+      <div class="bg-gray-900 p-4 rounded shadow hover:bg-gray-800 transition">
+        <h3 class="text-xl neon mb-2">Terminal Portfolio</h3>
+        <p class="text-gray-300">A portfolio website designed to look like a hacker’s terminal interface.</p>
+        <a href="#" class="text-blue-400 hover:underline mt-2 inline-block">View Project</a>
+      </div>
+      <div class="bg-gray-900 p-4 rounded shadow hover:bg-gray-800 transition">
+        <h3 class="text-xl neon mb-2">Script Vault</h3>
+        <p class="text-gray-300">A collection of useful scripts and tools for penetration testing.</p>
+        <a href="#" class="text-blue-400 hover:underline mt-2 inline-block">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="max-w-4xl mx-auto p-6 mt-8 mb-12">
+    <h2 class="text-2xl neon mb-4">Contact</h2>
+    <p class="text-gray-300 mb-2">Email: <a href="mailto:imad@imadalisyed.com" class="underline">imad@imadalisyed.com</a></p>
+    <p class="text-gray-300">GitHub: <a href="https://github.com/Imad-ali-syed" class="underline">github.com/Imad-ali-syed</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-gray-500 p-6 border-t border-gray-800">
+    © 2025 Imad Ali Syed
+  </footer>
+
 </body>
 </html>
