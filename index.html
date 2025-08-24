@@ -1,53 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Imad Ali Syed</title>
-  <link rel="icon" type="image/png" href="assets/images/favicon.jpeg" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #121212; color: #e0e0e0; }
-    .hero-bg { background: url('assets/images/hero.jpg') center/cover no-repeat; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imad Ali Syed</title>
+<link rel="icon" type="image/png" href="assets/images/favicon.jpeg" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:#121212; color:#e0e0e0; }
+.hero-bg { background:url('assets/images/hero.jpg') center/cover no-repeat; }
+
+/* Rotations */
+.rotate-slow { animation: spin 18s linear infinite; }
+.rotate-medium { animation: spin 12s linear infinite reverse; }
+.rotate-fast { animation: spin 8s linear infinite; }
+@keyframes spin { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
+
+/* Typewriter */
+.typewriter { font-family:monospace; border-right:2px solid #a855f7; white-space:nowrap; overflow:hidden; display:inline-block; animation: blinkCursor 0.7s infinite; }
+@keyframes blinkCursor {0%,50%{border-color:#a855f7;}51%,100%{border-color:transparent;}}
+
+/* Spy drone with wings & trail */
+.spy-drone {
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  background: radial-gradient(circle, #a855f7 50%, #0f0f0f 100%);
+  border: 3px solid #fff;
+  border-radius:50%;
+  box-shadow: 0 0 10px #a855f7, 0 0 20px rgba(168,85,247,0.5);
+  z-index:9999;
+  pointer-events:auto;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s, box-shadow 0.2s;
+  overflow:visible;
+}
+.spy-drone::before, .spy-drone::after {
+  content:"";
+  position:absolute;
+  top:50%;
+  width:16px; height:4px;
+  background:#a855f7;
+  border-radius:2px;
+  opacity:0.8;
+  animation: flap 0.4s infinite alternate;
+}
+.spy-drone::before { left:-18px; transform:rotate(25deg);}
+.spy-drone::after { right:-18px; transform:rotate(-25deg);}
+@keyframes flap { from{transform:scaleX(0.6) rotate(25deg);} to{transform:scaleX(1) rotate(25deg);} }
+
+/* Feather wings */
+.wing {
+  position: absolute;
+  width: 24px;
+  height: 10px;
+  background: linear-gradient(135deg,#fff,#a855f7);
+  border-radius: 50% 50% 0 0;
+  opacity: 0.7;
+  transform-origin: left center;
+  animation: wingFlap 0.4s infinite alternate;
+}
+.wing.left { left: -12px; top: 6px; transform:rotate(-20deg);}
+.wing.right { right: -12px; top: 6px; transform:rotate(20deg);}
+@keyframes wingFlap { from{transform:rotate(-20deg) scaleY(0.8);} to{transform:rotate(-30deg) scaleY(1);} }
+
+/* Trail */
+.trail {
+  position: fixed;
+  width: 20px; height: 20px;
+  background: radial-gradient(circle,#e32121,#ff0000);
+  border-radius:50%;
+  pointer-events:none;
+  opacity:0.6;
+  filter: blur(4px);
+  z-index:9998;
+}
+
+/* Freak out */
+.freak-out { animation: freak 0.4s alternate 4; }
+@keyframes freak {0%{transform:translate(-50%,-50%) scale(1);}25%{transform:translate(-50%,-50%) scale(1.2) rotate(10deg);}50%{transform:translate(-50%,-50%) scale(0.9) rotate(-10deg);}75%{transform:translate(-50%,-50%) scale(1.3) rotate(15deg);}100%{transform:translate(-50%,-50%) scale(1);}}
+</style>
 </head>
-<body class="pt-24">
+<body>
 
-  <!-- Navbar -->
-  <!-- Copy header snippet here -->
-  <header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-    <div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div>
-    <nav class="space-x-6">
-      <a href="index.html" class="hover:text-purple-400">Home</a>
-      <a href="about.html" class="hover:text-purple-400">About</a>
-      <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a>
-      <a href="skills.html" class="hover:text-purple-400">Skills</a>
-      <a href="blog.html" class="hover:text-purple-400">Blog</a>
-      <a href="contact.html" class="hover:text-purple-400">Contact</a>
-    </nav>
-  </header>
-  
-  
-  <!-- Hero Section -->
-  <section class="hero-bg h-screen flex items-center justify-center text-center">
-    <div class="bg-gray-900 bg-opacity-70 p-8 rounded" data-aos="fade-up">
-      <h1 class="text-5xl md:text-7xl font-bold text-purple-500 mb-4">Imad Ali Syed</h1>
-      <p class="text-xl md:text-2xl text-gray-300 mb-6">Cybersecurity Enthusiast</p>
-      <a href="about.html" class="bg-purple-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-purple-400 transition">Learn More</a>
+<!-- Navbar -->
+<header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50 shadow-lg">
+  <div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div>
+  <nav class="space-x-6">
+    <a href="index.html" class="hover:text-purple-400">Home</a>
+    <a href="about.html" class="hover:text-purple-400">About</a>
+    <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a>
+    <a href="skills.html" class="hover:text-purple-400">Skills</a>
+    <a href="blog.html" class="hover:text-purple-400">Blog</a>
+    <a href="contact.html" class="hover:text-purple-400">Contact</a>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero-bg h-screen flex items-center justify-center text-center relative overflow-hidden">
+  <div class="relative w-96 h-96 flex items-center justify-center">
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="absolute w-80 h-80 border-2 border-purple-500 rotate-slow"></div>
+      <div class="absolute w-72 h-72 border-2 border-cyan-400 rotate-medium"></div>
+      <div class="absolute w-64 h-64 border-2 border-pink-500 rotate-fast"></div>
     </div>
-  </section>
+    <div class="relative bg-gray-900 bg-opacity-70 rounded-lg px-10 py-12 flex flex-col items-center justify-center shadow-2xl">
+      <h1 id="typewriter" class="text-3xl md:text-4xl font-extrabold text-purple-400 mb-3 typewriter"></h1>
+      <p class="text-lg text-gray-300">Cybersecurity Professional</p>
+    </div>
+  </div>
+</section>
 
-  <!-- Quick Intro Section -->
-  <section class="max-w-5xl mx-auto px-6 py-16" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold mb-6 text-purple-500">Welcome!</h2>
-    <p class="text-gray-300 leading-relaxed text-lg">I’m Imad Ali Syed, a professional developer passionate about building sleek, modern, and secure digital experiences. Explore my work, skills, and projects below.</p>
-  </section>
+<!-- Quick Intro -->
+<section class="max-w-4xl mx-auto text-center mt-16 px-6">
+  <h2 class="text-3xl md:text-4xl font-bold text-white mb-6" data-aos="fade-up">Welcome to My Digital Space</h2>
+  <p class="text-lg text-gray-300 leading-relaxed mb-6" data-aos="fade-up" data-aos-delay="100">
+    I'm <span class="text-purple-400 font-semibold">Imad Ali Syed</span>, blending technology, creativity, and problem-solving.
+  </p>
+</section>
 
-  <script>
-    AOS.init({ duration: 800, once: true });
-  </script>
+<!-- Timeline Section -->
+<section class="timeline relative max-w-5xl mx-auto px-6 py-20">
+  <div class="absolute left-8 top-0 bottom-0 w-1 bg-purple-500"></div>
+  <div class="ml-20 space-y-12">
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Web Developer</h3><p class="text-gray-400 text-sm">May 2025 – Mar 2025</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Joined CCNY</h3><p class="text-gray-400 text-sm">Jan 2025</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Freelance Projects</h3><p class="text-gray-400 text-sm">Dec 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Hackathon Winner</h3><p class="text-gray-400 text-sm">Nov 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Learning Python</h3><p class="text-gray-400 text-sm">Oct 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Open Source Contributions</h3><p class="text-gray-400 text-sm">Sep 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Started Blog</h3><p class="text-gray-400 text-sm">Aug 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Attended Workshop</h3><p class="text-gray-400 text-sm">Jul 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Started JS</h3><p class="text-gray-400 text-sm">Jun 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">First Internship</h3><p class="text-gray-400 text-sm">May 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Web Developer</h3><p class="text-gray-400 text-sm">May 2025 – Mar 2025</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Joined CCNY</h3><p class="text-gray-400 text-sm">Jan 2025</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Freelance Projects</h3><p class="text-gray-400 text-sm">Dec 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Hackathon Winner</h3><p class="text-gray-400 text-sm">Nov 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Learning Python</h3><p class="text-gray-400 text-sm">Oct 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Open Source Contributions</h3><p class="text-gray-400 text-sm">Sep 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Started Blog</h3><p class="text-gray-400 text-sm">Aug 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Attended Workshop</h3><p class="text-gray-400 text-sm">Jul 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">Started JS</h3><p class="text-gray-400 text-sm">Jun 2024</p></div>
+    <div data-aos="fade-up"><h3 class="text-xl font-bold text-purple-400">First Internship</h3><p class="text-gray-400 text-sm">May 2024</p></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 mt-16 py-8 text-center text-gray-400">
+  <div class="mb-4">
+    <a href="https://github.com/Imad-ali-syed" target="_blank" class="mx-3 hover:text-purple-400">GitHub</a>
+    <a href="https://linkedin.com" target="_blank" class="mx-3 hover:text-purple-400">LinkedIn</a>
+    <a href="mailto:imad@example.com" class="mx-3 hover:text-purple-400">Email</a>
+  </div>
+  <p class="text-sm">&copy; <span id="year"></span> Imad Ali Syed. All rights reserved.</p>
+</footer>
+
+<!-- Spy Drone -->
+<div id="spy" class="spy-drone">
+  <div class="wing left"></div>
+  <div class="wing right"></div>
+</div>
+<div id="trail-container"></div>
+
+<script>
+AOS.init({duration:800,once:true});
+document.getElementById("year").textContent=new Date().getFullYear();
+
+// Typewriter
+const text="Imad Ali Syed", speed=150;
+let i=0, display="", target=document.getElementById("typewriter");
+function typeWriter(){if(i<text.length){if(i===4){display+="s";target.textContent=display; setTimeout(()=>{display=display.slice(0,-1);target.textContent=display; setTimeout(()=>{display+=text[i];target.textContent=display;i++;setTimeout(typeWriter,speed);},speed);},300);}else{display+=text[i];target.textContent=display;i++;setTimeout(typeWriter,speed);}}}
+typeWriter();
+
+// Spy drone smooth + trail
+const spy=document.getElementById("spy");
+const timeline=document.querySelector('.timeline');
+const trailContainer=document.createElement('div');
+trailContainer.id='trail-container';
+document.body.appendChild(trailContainer);
+
+let freeX=Math.random()*window.innerWidth*0.8, freeY=window.scrollY+window.innerHeight*0.3;
+let currentX=freeX, currentY=freeY;
+const trailParticles=[];
+
+function animateSpy(){
+  const scrollY=window.scrollY;
+  const timelineTop=timeline.offsetTop, timelineHeight=timeline.offsetHeight;
+  let targetX, targetY;
+  if(scrollY+window.innerHeight*0.5>=timelineTop && scrollY<=timelineTop+timelineHeight){
+    let progress=Math.min(1,Math.max(0,(scrollY+window.innerHeight*0.5-timelineTop)/timelineHeight));
+    targetX=timeline.offsetLeft+4; targetY=timelineTop+progress*timelineHeight;
+  } else { targetX=freeX; targetY=freeY; }
+  currentX+=(targetX-currentX)*0.1; currentY+=(targetY-currentY)*0.1;
+  spy.style.left=currentX+"px"; spy.style.top=currentY+"px";
+
+  // Trail
+  const particle=document.createElement('div');
+  particle.className='trail';
+  particle.style.left=currentX+'px';
+  particle.style.top=currentY+'px';
+  trailContainer.appendChild(particle);
+  trailParticles.push({el:particle, life:20});
+  trailParticles.forEach((p,i)=>{
+    p.life--;
+    p.el.style.opacity=p.life/20*0.6;
+    if(p.life<=0){p.el.remove(); trailParticles.splice(i,1);}
+  });
+
+  requestAnimationFrame(animateSpy);
+}
+animateSpy();
+
+window.addEventListener("scroll",()=>{freeY=window.scrollY+window.innerHeight*0.3; if(Math.random()<0.05) freeX=Math.random()*window.innerWidth*0.8;});
+window.addEventListener("resize",()=>freeX=Math.min(freeX,window.innerWidth-50));
+spy.addEventListener("mouseenter",()=>{spy.classList.add("freak-out"); freeX=Math.random()*window.innerWidth*0.9; freeY=window.scrollY+Math.random()*window.innerHeight*0.8; setTimeout(()=>spy.classList.remove("freak-out"),1000);});
+spy.addEventListener("click",()=>{spy.classList.add("freak-out"); freeX=Math.random()*window.innerWidth*0.9; freeY=window.scrollY+Math.random()*window.innerHeight*0.8; setTimeout(()=>spy.classList.remove("freak-out"),1000);});
+</script>
+
 </body>
 </html>
