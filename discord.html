@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join the CCNY Cybersecurity Club on Discord</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="assets/images/favicon.jpeg" />
+
+<!--
+  ============================================================================
+  WHEN THE DISCORD INVITE CHANGES, EDIT THE TWO LINES MARKED "INVITE" BELOW.
+  Nothing else needs to change - not the flyer, not the QR codes, not the
+  club page, not the Google Form. They all point at imadalisyed.com/discord.
+  ============================================================================
+-->
+
+<!-- INVITE (1 of 2) -->
+<meta http-equiv="refresh" content="0; url=https://discord.gg/jffFezmyxQ">
+
+<style>
+  body {
+    font-family:'Inter', system-ui, -apple-system, sans-serif;
+    background:#121212; color:#e0e0e0; margin:0;
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:2rem;
+  }
+  .box { max-width:30rem; }
+  h1 { font-size:1.5rem; font-weight:700; color:#a855f7; margin:0 0 .75rem; }
+  p { color:#9ca3af; line-height:1.6; margin:0 0 1.5rem; }
+  a.btn {
+    display:inline-block; background:#7c3aed; color:#fff; text-decoration:none;
+    font-weight:600; padding:.85rem 1.75rem; border-radius:.6rem;
+  }
+  a.btn:hover { background:#8b5cf6; }
+  .small { font-size:.85rem; margin-top:1.75rem; }
+  .small a { color:#a855f7; }
+</style>
+</head>
+<body>
+  <div class="box">
+    <h1>CCNY Cybersecurity Club</h1>
+    <p>Taking you to our Discord&hellip;</p>
+    <!-- INVITE (2 of 2) -->
+    <a class="btn" id="invite" href="https://discord.gg/jffFezmyxQ">Open Discord</a>
+    <p class="small">
+      Didn't redirect? Tap the button above.<br>
+      Trouble joining? Email <a href="mailto:ccnycybersec@gmail.com">ccnycybersec@gmail.com</a>
+      or see the <a href="club.html">club page</a>.
+    </p>
+  </div>
+  <script>
+    // Belt and braces: the meta refresh above handles browsers with JS off.
+    var el = document.getElementById('invite');
+    if (el) { location.replace(el.href); }
+  </script>
+</body>
+</html>
