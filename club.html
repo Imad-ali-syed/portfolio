@@ -235,6 +235,11 @@ if (window.AOS) { AOS.init({ duration: 800, once: true }); }
 document.getElementById("year").textContent = new Date().getFullYear();
 
 (function () {
+  // Approved signups come from the Roster tab of the response sheet, published
+  // as CSV. Officers and any manual additions live in members.json. Both are
+  // merged; members.json wins on duplicate names.
+  var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQp4lLaZNMU_kT2omZ6btId7W1bQaRpJWXPesctHiKwCgff7H_UxdvX9hO1Apzc6k_DsabrhF5AvHWI/pub?gid=877942863&single=true&output=csv';
+
   var EXEC  = ['President', 'Vice President', 'Secretary', 'Treasurer'];
   var LEADS = ['CTF Team Lead', 'Workshop Lead', 'Events Lead'];
 
@@ -264,13 +269,20 @@ document.getElementById("year").textContent = new Date().getFullYear();
     return 100;
   }
 
-  // A bare "2026-09-08" is parsed by JS as UTC midnight, which renders as the
-  // previous day for anyone west of UTC. Build those as a local date instead.
+  // Build dates from their parts rather than letting the engine guess.
+  // "2026-09-08" parsed natively is UTC midnight (shows as the 7th in New York),
+  // and "2026-09-08 12:41:00" is rejected outright by Safari. Both are treated
+  // here as plain club-local wall-clock time, so every viewer sees the same thing.
   function parseWhen(v) {
     if (!v) { return null; }
     var raw = String(v).trim();
-    var ymd = /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw);
-    if (ymd) { return { d: new Date(+ymd[1], +ymd[2] - 1, +ymd[3]), time: false }; }
+    var m = /^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/.exec(raw);
+    if (m) {
+      return {
+        d: new Date(+m[1], +m[2] - 1, +m[3], +(m[4] || 0), +(m[5] || 0), +(m[6] || 0)),
+        time: m[4] !== undefined
+      };
+    }
     var d = new Date(raw);
     if (isNaN(d.getTime())) { return null; }
     return { d: d, time: /[T ]\d{1,2}:\d{2}/.test(raw) };
@@ -284,55 +296,100 @@ document.getElementById("year").textContent = new Date().getFullYear();
     return 'joined ' + day + ' at ' + p.d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
   }
 
-  fetch('members.json', { cache: 'no-store' })
-    .then(function (r) {
-      if (!r.ok) { throw new Error('HTTP ' + r.status); }
-      return r.json();
-    })
-    .then(function (data) {
-      var members = (data && data.members) || [];
-      members = members.filter(function (m) { return m && m.name; });
+  function parseCSV(text) {
+    var rows = [], row = [], field = '', inQ = false, c, i;
+    text = String(text).replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    for (i = 0; i < text.length; i++) {
+      c = text.charAt(i);
+      if (inQ) {
+        if (c === '"') {
+          if (text.charAt(i + 1) === '"') { field += '"'; i++; }
+          else { inQ = false; }
+        } else { field += c; }
+      } else if (c === '"') { inQ = true; }
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+      else { field += c; }
+    }
+    if (field !== '' || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
 
-      if (stat) { stat.textContent = members.length; }
+  function fromSheet(text) {
+    var rows = parseCSV(text);
+    if (rows.length < 2) { return []; }
+    var head = rows[0].map(function (h) { return String(h).trim().toLowerCase(); });
+    var iN = head.indexOf('name'), iJ = head.indexOf('joined'), iR = head.indexOf('role');
+    if (iN === -1) { return []; }
+    return rows.slice(1).map(function (r) {
+      return {
+        name: String(r[iN] || '').trim(),
+        joined: iJ === -1 ? '' : String(r[iJ] || '').trim(),
+        role: (iR === -1 ? '' : String(r[iR] || '').trim()) || 'Member'
+      };
+    }).filter(function (m) { return m.name; });
+  }
 
-      if (!members.length) { empty.classList.remove('hidden'); return; }
+  function render(members) {
+    stat.textContent = members.length;
 
-      // Undated entries (founding officers) pin to the top in role order;
-      // everyone with a join date follows, newest first.
-      members.sort(function (a, b) {
-        var pa = parseWhen(a.joined), pb = parseWhen(b.joined);
-        if (!pa && !pb) {
-          var r = rank(a.role) - rank(b.role);
-          return r !== 0 ? r : String(a.name).localeCompare(String(b.name));
-        }
-        if (!pa) { return -1; }
-        if (!pb) { return 1; }
-        return pb.d.getTime() - pa.d.getTime();
+    // Undated entries (founding officers) pin to the top in role order;
+    // everyone with a join date follows, newest first.
+    members.sort(function (a, b) {
+      var pa = parseWhen(a.joined), pb = parseWhen(b.joined);
+      if (!pa && !pb) {
+        var r = rank(a.role) - rank(b.role);
+        return r !== 0 ? r : String(a.name).localeCompare(String(b.name));
+      }
+      if (!pa) { return -1; }
+      if (!pb) { return 1; }
+      return pb.d.getTime() - pa.d.getTime();
+    });
+
+    var founding = members.filter(function (m) { return m.founding; }).length;
+    var bits = [members.length + (members.length === 1 ? ' member' : ' members')];
+    if (founding) { bits.push(founding + ' founding'); }
+    meta.textContent = bits.join(' · ');
+
+    list.innerHTML = members.map(function (m) {
+      var role = m.role || 'Member';
+      var date = when(m.joined) || 'founding officer';
+      return '' +
+        '<div class="row rounded-xl px-5 py-3.5 flex flex-wrap items-center gap-x-4 gap-y-2">' +
+          '<div class="font-semibold text-gray-100 flex-1 min-w-[10rem]">' + esc(m.name) + '</div>' +
+          '<span class="badge ' + badgeClass(role) + '">' + esc(role).toUpperCase() + '</span>' +
+          (m.founding ? '<span class="badge b-found">FOUNDING</span>' : '') +
+          '<div class="text-sm text-gray-500 mono w-full sm:w-auto">' + esc(date) + '</div>' +
+        '</div>';
+    }).join('');
+  }
+
+  function grab(url, asText) {
+    return fetch(url, { cache: 'no-store' })
+      .then(function (r) { return r.ok ? (asText ? r.text() : r.json()) : null; })
+      .catch(function () { return null; });
+  }
+
+  Promise.all([grab('members.json', false), grab(SHEET_CSV, true)])
+    .then(function (res) {
+      var manual = (res[0] && res[0].members) || [];
+      var signups = res[1] ? fromSheet(res[1]) : [];
+
+      if (!res[0] && !res[1]) { err.classList.remove('hidden'); return; }
+
+      var seen = {}, out = [];
+      manual.concat(signups).forEach(function (m) {
+        if (!m || !m.name) { return; }
+        var k = String(m.name).trim().toLowerCase();
+        if (seen[k]) { return; }
+        seen[k] = 1;
+        out.push(m);
       });
 
-      var founding = members.filter(function (m) { return m.founding; }).length;
-      var bits = [members.length + (members.length === 1 ? ' member' : ' members')];
-      if (founding) { bits.push(founding + ' founding'); }
-      meta.textContent = bits.join(' · ');
-
-      var html = members.map(function (m) {
-        var role = m.role || 'Member';
-        var date = when(m.joined) || 'founding officer';
-        return '' +
-          '<div class="row rounded-xl px-5 py-3.5 flex flex-wrap items-center gap-x-4 gap-y-2">' +
-            '<div class="font-semibold text-gray-100 flex-1 min-w-[10rem]">' + esc(m.name) + '</div>' +
-            '<span class="badge ' + badgeClass(role) + '">' + esc(role).toUpperCase() + '</span>' +
-            (m.founding ? '<span class="badge b-found">FOUNDING</span>' : '') +
-            '<div class="text-sm text-gray-500 mono w-full sm:w-auto">' + esc(date) + '</div>' +
-          '</div>';
-      }).join('');
-
-      list.innerHTML = html;
+      if (!out.length) { stat.textContent = '0'; empty.classList.remove('hidden'); return; }
+      render(out);
     })
-    .catch(function () {
-      err.classList.remove('hidden');
-      if (stat) { stat.textContent = '—'; }
-    });
+    .catch(function () { err.classList.remove('hidden'); });
 })();
 </script>
 </body>
