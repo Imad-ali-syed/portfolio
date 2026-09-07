@@ -20,6 +20,13 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
 .card { background:#191924; border:1px solid #2a2a3a; transition:transform .25s, border-color .25s; }
 .card:hover { transform:translateY(-4px); border-color:#a855f7; }
 .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.row { background:#17172099; border:1px solid #26263a; transition:border-color .2s, background .2s; }
+.row:hover { border-color:#a855f7; background:#1b1b28; }
+.badge { font-size:.68rem; letter-spacing:.08em; padding:.2rem .55rem; border-radius:9999px; white-space:nowrap; }
+.b-exec { background:rgba(168,85,247,.16); color:#c8a2fc; border:1px solid rgba(168,85,247,.4); }
+.b-lead { background:rgba(34,211,238,.14); color:#7fe0f2; border:1px solid rgba(34,211,238,.35); }
+.b-mem  { background:rgba(148,163,184,.12); color:#a9b2c2; border:1px solid rgba(148,163,184,.3); }
+.b-found{ background:rgba(236,72,153,.14); color:#f4a3c8; border:1px solid rgba(236,72,153,.35); }
 </style>
 </head>
 <body class="pt-24 bg-gray-900 text-gray-300">
@@ -71,6 +78,10 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
 <section class="max-w-5xl mx-auto px-6 pb-4">
   <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center" data-aos="fade-up">
     <div class="card rounded-xl p-5">
+      <div class="text-purple-400 text-2xl font-bold mono" id="statMembers">&mdash;</div>
+      <div class="text-xs text-gray-500 mt-1 tracking-wider">VERIFIED MEMBERS</div>
+    </div>
+    <div class="card rounded-xl p-5">
       <div class="text-purple-400 text-2xl font-bold">Thu 12&ndash;2</div>
       <div class="text-xs text-gray-500 mt-1 tracking-wider">GENERAL MEETINGS</div>
     </div>
@@ -81,10 +92,6 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
     <div class="card rounded-xl p-5">
       <div class="text-purple-400 text-2xl font-bold">$0</div>
       <div class="text-xs text-gray-500 mt-1 tracking-wider">MEMBERSHIP DUES</div>
-    </div>
-    <div class="card rounded-xl p-5" id="visitsWrap">
-      <div class="text-purple-400 text-2xl font-bold mono" id="visits">&mdash;</div>
-      <div class="text-xs text-gray-500 mt-1 tracking-wider">PAGE VIEWS</div>
     </div>
   </div>
 </section>
@@ -145,17 +152,44 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
   <div class="rounded-2xl border border-purple-800/60 bg-gradient-to-br from-purple-900/25 to-transparent p-8 md:p-10">
     <h2 class="text-3xl font-semibold mb-4 text-purple-400">How to join</h2>
     <ol class="space-y-3 text-lg">
-      <li><span class="mono text-cyan-400 mr-2">01</span> Fill out the signup form &mdash; takes about a minute.</li>
-      <li><span class="mono text-cyan-400 mr-2">02</span> Join the Discord. That's where meetings, CTFs and workshops get announced.</li>
-      <li><span class="mono text-cyan-400 mr-2">03</span> Show up to a general meeting: Thursdays, 12:00&ndash;2:00 PM, NAC Plaza &amp; Quad.</li>
+      <li><span class="mono text-cyan-400 mr-2">01</span> Fill out the signup form with your CCNY student email and your EMPLID.</li>
+      <li><span class="mono text-cyan-400 mr-2">02</span> We verify you're a current CCNY student. Usually same week.</li>
+      <li><span class="mono text-cyan-400 mr-2">03</span> Once you're verified your name goes up on the member wall below, and you're in.</li>
+      <li><span class="mono text-cyan-400 mr-2">04</span> Join the Discord and come to a general meeting: Thursdays, 12:00&ndash;2:00 PM, NAC Plaza &amp; Quad.</li>
     </ol>
-    <p class="mt-6 text-gray-400">That's the whole process. There is no application and no membership fee.</p>
+    <p class="mt-6 text-gray-400">There's no application to write and no membership fee. Everyone starts as a Member; leads and officer roles get handed out as people take things on.</p>
     <div class="mt-7 flex flex-wrap gap-3">
       <a href="https://forms.gle/1SAmVhKgjSnBZCrbA" target="_blank" rel="noopener"
          class="bg-purple-600 hover:bg-purple-500 text-white font-semibold px-7 py-3 rounded-lg transition">Sign up</a>
       <a href="nfc.html" class="border border-gray-600 hover:border-purple-400 hover:text-purple-300 px-7 py-3 rounded-lg transition">Got an NFC tag from us? &rarr;</a>
     </div>
   </div>
+</section>
+
+<!-- Member wall -->
+<section id="members" class="max-w-5xl mx-auto px-6 pb-16">
+  <div class="flex flex-wrap items-end justify-between gap-4 mb-2" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold text-purple-500">Members</h2>
+    <div class="text-sm text-gray-500" id="rosterMeta"></div>
+  </div>
+  <p class="text-gray-400 mb-8 max-w-3xl" data-aos="fade-up">
+    Everyone here signed up and had their student status verified against their CCNY email and EMPLID. Officers first, then newest joiners.
+  </p>
+
+  <div id="rosterList" class="space-y-2.5"></div>
+
+  <div id="rosterEmpty" class="hidden card rounded-xl p-8 text-center text-gray-400">
+    No members listed yet. <a href="https://forms.gle/1SAmVhKgjSnBZCrbA" target="_blank" rel="noopener" class="text-purple-400 hover:text-purple-300">Be the first.</a>
+  </div>
+  <div id="rosterError" class="hidden card rounded-xl p-8 text-center text-gray-400">
+    Couldn't load the member list right now. Refresh, or email
+    <a href="mailto:ccnycybersec@gmail.com" class="text-purple-400 hover:text-purple-300">ccnycybersec@gmail.com</a>.
+  </div>
+
+  <p class="mt-6 text-sm text-gray-500">
+    We publish names, roles and join dates only &mdash; never emails or EMPLIDs. Want your name taken down?
+    Email <a href="mailto:ccnycybersec@gmail.com" class="text-purple-400 hover:text-purple-300">ccnycybersec@gmail.com</a> and it's off the page the same day.
+  </p>
 </section>
 
 <!-- Board -->
@@ -168,11 +202,11 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
     </div>
     <div class="card rounded-xl p-6" data-aos="fade-up" data-aos-delay="50">
       <div class="text-xs tracking-widest text-cyan-400 mb-2">VICE PRESIDENT</div>
-      <div class="text-lg font-semibold text-gray-100">Hussein Akinwande</div>
+      <div class="text-lg font-semibold text-gray-100">Proma Roy</div>
     </div>
     <div class="card rounded-xl p-6" data-aos="fade-up" data-aos-delay="100">
       <div class="text-xs tracking-widest text-cyan-400 mb-2">SECRETARY</div>
-      <div class="text-lg font-semibold text-gray-100">Proma Roy</div>
+      <div class="text-lg font-semibold text-gray-100">Chanakan Arponpong</div>
     </div>
     <div class="card rounded-xl p-6" data-aos="fade-up" data-aos-delay="150">
       <div class="text-xs tracking-widest text-cyan-400 mb-2">TREASURER</div>
@@ -197,24 +231,107 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
 </footer>
 
 <script>
-AOS.init({duration:800, once:true});
+if (window.AOS) { AOS.init({ duration: 800, once: true }); }
 document.getElementById("year").textContent = new Date().getFullYear();
 
-(function(){
-  var NS = 'imadalisyed.com', KEY = 'club';
-  var el = document.getElementById('visits');
-  if (!el) return;
-  var seen = false;
-  try { seen = sessionStorage.getItem('cnt_' + KEY) === '1'; } catch (e) {}
-  fetch('https://abacus.jasoncameron.dev/' + (seen ? 'get' : 'hit') + '/' + NS + '/' + KEY)
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      if (d && typeof d.value === 'number') { el.textContent = d.value.toLocaleString(); }
-      try { sessionStorage.setItem('cnt_' + KEY, '1'); } catch (e) {}
+(function () {
+  var EXEC  = ['President', 'Vice President', 'Secretary', 'Treasurer'];
+  var LEADS = ['CTF Team Lead', 'Workshop Lead', 'Events Lead'];
+
+  var list  = document.getElementById('rosterList');
+  var empty = document.getElementById('rosterEmpty');
+  var err   = document.getElementById('rosterError');
+  var meta  = document.getElementById('rosterMeta');
+  var stat  = document.getElementById('statMembers');
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  function badgeClass(role) {
+    if (EXEC.indexOf(role) !== -1)  { return 'b-exec'; }
+    if (LEADS.indexOf(role) !== -1) { return 'b-lead'; }
+    return 'b-mem';
+  }
+
+  function rank(role) {
+    var i = EXEC.indexOf(role);
+    if (i !== -1) { return i; }
+    var j = LEADS.indexOf(role);
+    if (j !== -1) { return 10 + j; }
+    return 100;
+  }
+
+  // A bare "2026-09-08" is parsed by JS as UTC midnight, which renders as the
+  // previous day for anyone west of UTC. Build those as a local date instead.
+  function parseWhen(v) {
+    if (!v) { return null; }
+    var raw = String(v).trim();
+    var ymd = /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw);
+    if (ymd) { return { d: new Date(+ymd[1], +ymd[2] - 1, +ymd[3]), time: false }; }
+    var d = new Date(raw);
+    if (isNaN(d.getTime())) { return null; }
+    return { d: d, time: /[T ]\d{1,2}:\d{2}/.test(raw) };
+  }
+
+  function when(v) {
+    var p = parseWhen(v);
+    if (!p) { return null; }
+    var day = p.d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    if (!p.time) { return 'joined ' + day; }
+    return 'joined ' + day + ' at ' + p.d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+  }
+
+  fetch('members.json', { cache: 'no-store' })
+    .then(function (r) {
+      if (!r.ok) { throw new Error('HTTP ' + r.status); }
+      return r.json();
     })
-    .catch(function(){
-      var w = document.getElementById('visitsWrap');
-      if (w) { w.style.display = 'none'; }
+    .then(function (data) {
+      var members = (data && data.members) || [];
+      members = members.filter(function (m) { return m && m.name; });
+
+      if (stat) { stat.textContent = members.length; }
+
+      if (!members.length) { empty.classList.remove('hidden'); return; }
+
+      // Undated entries (founding officers) pin to the top in role order;
+      // everyone with a join date follows, newest first.
+      members.sort(function (a, b) {
+        var pa = parseWhen(a.joined), pb = parseWhen(b.joined);
+        if (!pa && !pb) {
+          var r = rank(a.role) - rank(b.role);
+          return r !== 0 ? r : String(a.name).localeCompare(String(b.name));
+        }
+        if (!pa) { return -1; }
+        if (!pb) { return 1; }
+        return pb.d.getTime() - pa.d.getTime();
+      });
+
+      var founding = members.filter(function (m) { return m.founding; }).length;
+      var bits = [members.length + (members.length === 1 ? ' member' : ' members')];
+      if (founding) { bits.push(founding + ' founding'); }
+      meta.textContent = bits.join(' · ');
+
+      var html = members.map(function (m) {
+        var role = m.role || 'Member';
+        var date = when(m.joined) || 'founding officer';
+        return '' +
+          '<div class="row rounded-xl px-5 py-3.5 flex flex-wrap items-center gap-x-4 gap-y-2">' +
+            '<div class="font-semibold text-gray-100 flex-1 min-w-[10rem]">' + esc(m.name) + '</div>' +
+            '<span class="badge ' + badgeClass(role) + '">' + esc(role).toUpperCase() + '</span>' +
+            (m.founding ? '<span class="badge b-found">FOUNDING</span>' : '') +
+            '<div class="text-sm text-gray-500 mono w-full sm:w-auto">' + esc(date) + '</div>' +
+          '</div>';
+      }).join('');
+
+      list.innerHTML = html;
+    })
+    .catch(function () {
+      err.classList.remove('hidden');
+      if (stat) { stat.textContent = '—'; }
     });
 })();
 </script>

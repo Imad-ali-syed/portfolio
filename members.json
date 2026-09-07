@@ -1,0 +1,18 @@
+{
+  "_howto": [
+    "This file is the club roster shown on imadalisyed.com/club.",
+    "After you verify someone's EMPLID and student email, add an entry below and push.",
+    "Fields: name (required), role (required), joined (optional ISO date or date-time), founding (optional true).",
+    "Roles the page styles: President, Vice President, Secretary, Treasurer,",
+    "  CTF Team Lead, Workshop Lead, Events Lead, Member.",
+    "Any other role string still renders, it just uses the default badge.",
+    "Leave 'joined' out for founding officers and the page prints 'founding officer' instead of a date.",
+    "Newest joiners sort to the top automatically. Never put EMPLIDs or emails in this file."
+  ],
+  "members": [
+    { "name": "Imad Ali Syed",     "role": "President",      "founding": true },
+    { "name": "Proma Roy",         "role": "Vice President", "founding": true },
+    { "name": "Chanakan Arponpong","role": "Secretary",      "founding": true },
+    { "name": "Julie Liu",         "role": "Treasurer",      "founding": true }
+  ]
+}

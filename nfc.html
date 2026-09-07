@@ -59,9 +59,9 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
       <div class="text-purple-400 text-2xl font-bold">&infin;</div>
       <div class="text-xs text-gray-500 mt-1 tracking-wider">REWRITES</div>
     </div>
-    <div class="card rounded-xl p-5" id="visitsWrap">
-      <div class="text-purple-400 text-2xl font-bold mono" id="visits">&mdash;</div>
-      <div class="text-xs text-gray-500 mt-1 tracking-wider">PAGE VIEWS</div>
+    <div class="card rounded-xl p-5">
+      <div class="text-purple-400 text-2xl font-bold mono">137 B</div>
+      <div class="text-xs text-gray-500 mt-1 tracking-wider">NTAG213 CAPACITY</div>
     </div>
   </div>
 </section>
@@ -245,26 +245,8 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
 </footer>
 
 <script>
-AOS.init({duration:800, once:true});
+if (window.AOS) { AOS.init({ duration: 800, once: true }); }
 document.getElementById("year").textContent = new Date().getFullYear();
-
-(function(){
-  var NS = 'imadalisyed.com', KEY = 'nfc';
-  var el = document.getElementById('visits');
-  if (!el) return;
-  var seen = false;
-  try { seen = sessionStorage.getItem('cnt_' + KEY) === '1'; } catch (e) {}
-  fetch('https://abacus.jasoncameron.dev/' + (seen ? 'get' : 'hit') + '/' + NS + '/' + KEY)
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      if (d && typeof d.value === 'number') { el.textContent = d.value.toLocaleString(); }
-      try { sessionStorage.setItem('cnt_' + KEY, '1'); } catch (e) {}
-    })
-    .catch(function(){
-      var w = document.getElementById('visitsWrap');
-      if (w) { w.style.display = 'none'; }
-    });
-})();
 </script>
 </body>
 </html>
