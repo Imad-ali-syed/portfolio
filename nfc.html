@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program Your NFC Tag - CCNY Cybersecurity Club</title>
+<meta name="description" content="How to program the NFC tag you got from the CCNY Cybersecurity Club - step by step for Android and iPhone, plus project ideas.">
+<link rel="icon" type="image/png" href="assets/images/favicon.jpeg" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:#121212; color:#e0e0e0; }
+.card { background:#191924; border:1px solid #2a2a3a; transition:transform .25s, border-color .25s; }
+.card:hover { transform:translateY(-4px); border-color:#a855f7; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.step-n { min-width:2.25rem; height:2.25rem; }
+</style>
+</head>
+<body class="pt-24 bg-gray-900 text-gray-300">
+
+<!-- Navbar -->
+<header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50 shadow-lg">
+  <a href="index.html"><div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div></a>
+  <nav class="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6 mt-4 md:mt-0">
+    <a href="index.html" class="hover:text-purple-400">Home</a>
+    <a href="about.html" class="hover:text-purple-400">About</a>
+    <a href="club.html" class="text-purple-400">Club</a>
+    <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a>
+    <a href="skills.html" class="hover:text-purple-400">Skills</a>
+    <a href="contact.html" class="hover:text-purple-400">Contact</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="max-w-4xl mx-auto px-6 pt-12 pb-10" data-aos="fade-up">
+  <a href="club.html" class="text-purple-400 hover:text-purple-300 text-sm">&larr; Back to the club page</a>
+  <p class="mono text-xs tracking-[0.25em] text-cyan-400 mt-6 mb-3">CCNY CYBERSECURITY CLUB &nbsp;/&nbsp; TAG SETUP</p>
+  <h1 class="text-4xl md:text-5xl font-extrabold text-gray-100 leading-tight">Program your <span class="text-purple-400">NFC tag</span></h1>
+  <p class="mt-5 text-lg text-gray-400 max-w-2xl">
+    You picked up a blank NFC sticker from us. Right now it does nothing. Ten minutes from now it can join your
+    WiFi, open your LinkedIn, start your study playlist, or fire off a text saying you're on your way. Here's how.
+  </p>
+</section>
+
+<!-- Stats / counter -->
+<section class="max-w-4xl mx-auto px-6 pb-12">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center" data-aos="fade-up">
+    <div class="card rounded-xl p-5">
+      <div class="text-purple-400 text-2xl font-bold">~10 min</div>
+      <div class="text-xs text-gray-500 mt-1 tracking-wider">SETUP TIME</div>
+    </div>
+    <div class="card rounded-xl p-5">
+      <div class="text-purple-400 text-2xl font-bold">Free</div>
+      <div class="text-xs text-gray-500 mt-1 tracking-wider">APP COST</div>
+    </div>
+    <div class="card rounded-xl p-5">
+      <div class="text-purple-400 text-2xl font-bold">&infin;</div>
+      <div class="text-xs text-gray-500 mt-1 tracking-wider">REWRITES</div>
+    </div>
+    <div class="card rounded-xl p-5" id="visitsWrap">
+      <div class="text-purple-400 text-2xl font-bold mono" id="visits">&mdash;</div>
+      <div class="text-xs text-gray-500 mt-1 tracking-wider">PAGE VIEWS</div>
+    </div>
+  </div>
+</section>
+
+<!-- What it is -->
+<section class="max-w-4xl mx-auto px-6 pb-14" data-aos="fade-up">
+  <h2 class="text-2xl font-semibold text-purple-500 mb-4">What you're actually holding</h2>
+  <p class="leading-relaxed text-lg mb-4">
+    An NFC tag is a tiny chip and antenna with no battery. When you hold a phone within a couple of centimetres,
+    the phone's radio powers the chip and reads the few hundred bytes stored on it. Those bytes are an
+    <span class="mono text-cyan-300">NDEF record</span> &mdash; usually a URL, some text, or a WiFi credential.
+  </p>
+  <p class="leading-relaxed text-lg">
+    The tag doesn't run code. It hands your phone a piece of data, and your phone decides what to do with it. That
+    distinction matters: a tag can't install anything or take over your device, but it <em>can</em> send you to a
+    link you didn't expect. Which is a decent first security lesson &mdash; don't tap tags you find in the wild.
+  </p>
+</section>
+
+<!-- Android -->
+<section class="max-w-4xl mx-auto px-6 pb-14" data-aos="fade-up">
+  <h2 class="text-2xl font-semibold text-purple-500 mb-6">Android</h2>
+  <div class="space-y-4">
+    <div class="card rounded-xl p-6 flex gap-4">
+      <div class="step-n rounded-full bg-purple-600 text-white font-bold flex items-center justify-center">1</div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-100 mb-1">Turn NFC on</h3>
+        <p class="text-gray-400">Settings &rarr; Connected devices &rarr; Connection preferences &rarr; NFC. Some phones put it under Settings &rarr; Connections. If there's no NFC entry at all, your phone doesn't have the hardware &mdash; skip to the iPhone note below, it applies to you too.</p>
+      </div>
+    </div>
+    <div class="card rounded-xl p-6 flex gap-4">
+      <div class="step-n rounded-full bg-purple-600 text-white font-bold flex items-center justify-center">2</div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-100 mb-1">Install NFC Tools</h3>
+        <p class="text-gray-400">Free on the Play Store, published by wakdev. It's the standard tool for this and it doesn't need an account.</p>
+      </div>
+    </div>
+    <div class="card rounded-xl p-6 flex gap-4">
+      <div class="step-n rounded-full bg-purple-600 text-white font-bold flex items-center justify-center">3</div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-100 mb-1">Read the tag first</h3>
+        <p class="text-gray-400">Open the <span class="mono text-cyan-300">READ</span> tab and hold the tag against the back of your phone, near the top. You'll see the chip type and how many bytes it holds. Do this before writing &mdash; it tells you the tag works and where your phone's antenna is.</p>
+      </div>
+    </div>
+    <div class="card rounded-xl p-6 flex gap-4">
+      <div class="step-n rounded-full bg-purple-600 text-white font-bold flex items-center justify-center">4</div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-100 mb-1">Write something to it</h3>
+        <p class="text-gray-400"><span class="mono text-cyan-300">WRITE</span> tab &rarr; Add a record &rarr; pick a type (URL, Wi-Fi network, Text, Contact, and so on) &rarr; fill it in &rarr; Write. Hold the tag to the phone until it confirms. That's it &mdash; the tag now works on any NFC phone, including ones that have never seen your app.</p>
+      </div>
+    </div>
+    <div class="card rounded-xl p-6 flex gap-4">
+      <div class="step-n rounded-full bg-purple-600 text-white font-bold flex items-center justify-center">5</div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-100 mb-1">Test it, then decide about locking</h3>
+        <p class="text-gray-400">Close the app and tap the tag with your phone unlocked. It should fire. NFC Tools has a <span class="mono text-cyan-300">Lock tag</span> option under Other &mdash; <span class="text-yellow-400">this is permanent and cannot be undone.</span> Leave it unlocked until you're certain, then only lock it if you're handing the tag to someone else.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- iPhone -->
+<section class="max-w-4xl mx-auto px-6 pb-14" data-aos="fade-up">
+  <h2 class="text-2xl font-semibold text-purple-500 mb-6">iPhone</h2>
+  <p class="text-gray-400 mb-6">iPhone 7 and newer can read tags; iPhone 7 through XR need an app open to do it, while XS and newer read them in the background whenever the screen is on. Writing works on iPhone 7 and newer with an app.</p>
+  <div class="space-y-4">
+    <div class="card rounded-xl p-6 flex gap-4">
+      <div class="step-n rounded-full bg-purple-600 text-white font-bold flex items-center justify-center">1</div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-100 mb-1">Install NFC Tools (iOS)</h3>
+        <p class="text-gray-400">Same app, same developer, free on the App Store. There's no NFC toggle to flip on iOS &mdash; it's always available to apps that ask.</p>
+      </div>
+    </div>
+    <div class="card rounded-xl p-6 flex gap-4">
+      <div class="step-n rounded-full bg-purple-600 text-white font-bold flex items-center justify-center">2</div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-100 mb-1">Write your record</h3>
+        <p class="text-gray-400">Write &rarr; Add a record &rarr; choose your type &rarr; Write / Ready to scan &rarr; hold the <em>top edge</em> of the phone against the tag. The iPhone antenna is at the top, not the middle.</p>
+      </div>
+    </div>
+    <div class="card rounded-xl p-6 flex gap-4">
+      <div class="step-n rounded-full bg-purple-600 text-white font-bold flex items-center justify-center">3</div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-100 mb-1">Or skip the tag entirely and use Shortcuts</h3>
+        <p class="text-gray-400">Shortcuts app &rarr; Automation &rarr; New &rarr; NFC &rarr; Scan your tag &rarr; then attach <em>any</em> shortcut: turn on Do Not Disturb, set an alarm, open an app, text someone, start a Focus. Turn off "Ask Before Running." This is far more powerful than a plain URL, because the tag stays blank and your phone recognises it by its chip ID.</p>
+        <p class="text-gray-500 text-sm mt-2">Trade-off: a Shortcuts automation only works on <em>your</em> phone. A written URL works on everyone's.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ideas -->
+<section class="max-w-6xl mx-auto px-6 pb-14">
+  <h2 class="text-2xl font-semibold text-purple-500 mb-2" data-aos="fade-up">Things worth putting on it</h2>
+  <p class="text-gray-400 mb-8" data-aos="fade-up">Roughly ordered from "useful this afternoon" to "actual side project."</p>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="card rounded-xl p-6" data-aos="fade-up">
+      <h3 class="text-lg font-semibold text-gray-100 mb-2">Guest WiFi on the fridge</h3>
+      <p class="text-gray-400">Write a Wi-Fi record with your network name and password. Guests tap it and connect &mdash; you never read your password out loud again.</p>
+    </div>
+    <div class="card rounded-xl p-6" data-aos="fade-up" data-aos-delay="50">
+      <h3 class="text-lg font-semibold text-gray-100 mb-2">Tag on the back of your phone</h3>
+      <p class="text-gray-400">Point it at your LinkedIn or a digital business card. At career fairs you tap someone's phone instead of hunting for a pen.</p>
+    </div>
+    <div class="card rounded-xl p-6" data-aos="fade-up" data-aos-delay="100">
+      <h3 class="text-lg font-semibold text-gray-100 mb-2">Desk = study mode</h3>
+      <p class="text-gray-400">iOS Shortcut or Android Tasker: tap on arrival to enable Do Not Disturb, start a 50-minute timer and open your notes app.</p>
+    </div>
+    <div class="card rounded-xl p-6" data-aos="fade-up">
+      <h3 class="text-lg font-semibold text-gray-100 mb-2">Car mount</h3>
+      <p class="text-gray-400">Tap when you get in: Bluetooth on, Maps to campus, driving Focus, playlist rolling. One tap replaces five taps.</p>
+    </div>
+    <div class="card rounded-xl p-6" data-aos="fade-up" data-aos-delay="50">
+      <h3 class="text-lg font-semibold text-gray-100 mb-2">Dorm door check-in</h3>
+      <p class="text-gray-400">Tap on your way out to text your roommate "heading to campus." Genuinely useful, mildly cursed.</p>
+    </div>
+    <div class="card rounded-xl p-6" data-aos="fade-up" data-aos-delay="100">
+      <h3 class="text-lg font-semibold text-gray-100 mb-2">Lab equipment labels</h3>
+      <p class="text-gray-400">Stick tags on gear and point each at the manual, the reservation sheet, or the setup instructions for that machine.</p>
+    </div>
+    <div class="card rounded-xl p-6" data-aos="fade-up">
+      <h3 class="text-lg font-semibold text-gray-100 mb-2">Club event check-in</h3>
+      <p class="text-gray-400">A tag at the door pointing at a Google Form. Attendance tracked without a clipboard. We're doing exactly this.</p>
+    </div>
+    <div class="card rounded-xl p-6" data-aos="fade-up" data-aos-delay="50">
+      <h3 class="text-lg font-semibold text-gray-100 mb-2">A CTF challenge of your own</h3>
+      <p class="text-gray-400">Encode a hint, a base64 blob, or the first step of a puzzle chain. Hide tags around a room and make people walk the chain. Bring it to a club meeting.</p>
+    </div>
+    <div class="card rounded-xl p-6" data-aos="fade-up" data-aos-delay="100">
+      <h3 class="text-lg font-semibold text-gray-100 mb-2">Read the raw NDEF</h3>
+      <p class="text-gray-400">Dump the bytes with NFC Tools' advanced view and parse the record structure by hand. Then write a record manually and see what your phone does with a malformed one. That's the real project.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Troubleshooting -->
+<section class="max-w-4xl mx-auto px-6 pb-14" data-aos="fade-up">
+  <h2 class="text-2xl font-semibold text-purple-500 mb-6">When it doesn't work</h2>
+  <div class="space-y-3">
+    <div class="card rounded-xl p-5">
+      <h3 class="font-semibold text-gray-100 mb-1">Nothing happens when I tap</h3>
+      <p class="text-gray-400">Move the tag around slowly &mdash; antennas are small and in different places on every phone (top edge on iPhone, upper-middle on most Android). Screen must be on and unlocked.</p>
+    </div>
+    <div class="card rounded-xl p-5">
+      <h3 class="font-semibold text-gray-100 mb-1">It worked, then stopped</h3>
+      <p class="text-gray-400">Metal kills NFC. A tag stuck directly on a laptop lid, a metal desk, or under a metal phone case will read intermittently or not at all. Move it to plastic, glass or wood.</p>
+    </div>
+    <div class="card rounded-xl p-5">
+      <h3 class="font-semibold text-gray-100 mb-1">"Write failed" or "not enough space"</h3>
+      <p class="text-gray-400">Most cheap tags are NTAG213 with about 137 usable bytes. A long URL plus a text record won't fit. Shorten the URL or write one record instead of two.</p>
+    </div>
+    <div class="card rounded-xl p-5">
+      <h3 class="font-semibold text-gray-100 mb-1">I locked it by accident</h3>
+      <p class="text-gray-400">It's read-only forever now. Come to a meeting and we'll give you another one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="max-w-4xl mx-auto px-6 pb-20" data-aos="fade-up">
+  <div class="rounded-2xl border border-purple-800/60 bg-gradient-to-br from-purple-900/25 to-transparent p-8 md:p-10">
+    <h2 class="text-2xl font-semibold text-purple-400 mb-3">Built something with it?</h2>
+    <p class="text-gray-300 mb-6">Post it in the Discord. If it's good we'll run a workshop on it, and you'll be the one teaching it.</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="https://discord.gg/wXG4QRYab" target="_blank" rel="noopener"
+         class="bg-purple-600 hover:bg-purple-500 text-white font-semibold px-7 py-3 rounded-lg transition">Join the Discord</a>
+      <a href="club.html" class="border border-gray-600 hover:border-purple-400 hover:text-purple-300 px-7 py-3 rounded-lg transition">Club info</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 py-8 text-center text-gray-400">
+  <div class="mb-4">
+    <a href="https://instagram.com/ccnycybersec" target="_blank" rel="noopener" class="mx-3 hover:text-purple-400">Instagram</a>
+    <a href="https://discord.gg/wXG4QRYab" target="_blank" rel="noopener" class="mx-3 hover:text-purple-400">Discord</a>
+    <a href="mailto:ccnycybersec@gmail.com" class="mx-3 hover:text-purple-400">Email</a>
+    <a href="club.html" class="mx-3 hover:text-purple-400">Club</a>
+  </div>
+  <p class="text-sm">&copy; <span id="year"></span> CCNY Cybersecurity Club &middot; site by Imad Ali Syed</p>
+</footer>
+
+<script>
+AOS.init({duration:800, once:true});
+document.getElementById("year").textContent = new Date().getFullYear();
+
+(function(){
+  var NS = 'imadalisyed.com', KEY = 'nfc';
+  var el = document.getElementById('visits');
+  if (!el) return;
+  var seen = false;
+  try { seen = sessionStorage.getItem('cnt_' + KEY) === '1'; } catch (e) {}
+  fetch('https://abacus.jasoncameron.dev/' + (seen ? 'get' : 'hit') + '/' + NS + '/' + KEY)
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (d && typeof d.value === 'number') { el.textContent = d.value.toLocaleString(); }
+      try { sessionStorage.setItem('cnt_' + KEY, '1'); } catch (e) {}
+    })
+    .catch(function(){
+      var w = document.getElementById('visitsWrap');
+      if (w) { w.style.display = 'none'; }
+    });
+})();
+</script>
+</body>
+</html>
