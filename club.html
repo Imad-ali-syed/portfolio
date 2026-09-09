@@ -227,6 +227,15 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
   </p>
 </section>
 
+<!-- Core team (rendered from members.json; hidden until it has someone in it) -->
+<section id="coreTeamSection" class="hidden max-w-5xl mx-auto px-6 pb-20">
+  <h2 class="text-3xl font-semibold mb-2 text-purple-500">Core team</h2>
+  <p class="text-gray-400 mb-8 max-w-3xl">
+    Appointed directors who run the club's day-to-day work alongside the executive board.
+  </p>
+  <div id="coreTeamGrid" class="grid sm:grid-cols-2 md:grid-cols-3 gap-5"></div>
+</section>
+
 <!-- Footer -->
 <footer class="bg-gray-900 py-8 text-center text-gray-400">
   <div class="mb-4">
@@ -249,7 +258,17 @@ document.getElementById("year").textContent = new Date().getFullYear();
   var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQp4lLaZNMU_kT2omZ6btId7W1bQaRpJWXPesctHiKwCgff7H_UxdvX9hO1Apzc6k_DsabrhF5AvHWI/pub?gid=877942863&single=true&output=csv';
 
   var EXEC  = ['President', 'Vice President', 'Secretary', 'Treasurer'];
-  var LEADS = ['CTF Team Lead', 'Workshop Lead', 'Events Lead'];
+  // Any role listed here gets the cyan badge AND appears in the Core team section.
+  // Add new director titles here as you create them.
+  var LEADS = [
+    'Director of Events & Operations',
+    'Director of Marketing & Communications',
+    'Director of Programs',
+    'Community Manager',
+    'CTF Team Lead',
+    'Workshop Lead',
+    'Events Lead'
+  ];
 
   var list  = document.getElementById('rosterList');
   var empty = document.getElementById('rosterEmpty');
@@ -338,6 +357,36 @@ document.getElementById("year").textContent = new Date().getFullYear();
     }).filter(function (m) { return m.name; });
   }
 
+  function renderCoreTeam(manual) {
+    var grid = document.getElementById('coreTeamGrid');
+    var sec  = document.getElementById('coreTeamSection');
+    if (!grid || !sec) { return; }
+
+    var team = (manual || []).filter(function (m) {
+      return m && m.name && LEADS.indexOf(m.role) !== -1;
+    });
+    if (!team.length) { return; }
+
+    team.sort(function (a, b) {
+      var r = rank(a.role) - rank(b.role);
+      return r !== 0 ? r : String(a.name).localeCompare(String(b.name));
+    });
+
+    // No data-aos on these cards: AOS.init() has already run by the time they exist,
+    // so aos.css would leave them at opacity 0 forever.
+    grid.innerHTML = team.map(function (m) {
+      return '' +
+        '<div class="card rounded-xl p-6">' +
+          '<div class="text-xs tracking-widest text-cyan-400 mb-2">' + esc(String(m.role).toUpperCase()) + '</div>' +
+          '<div class="text-lg font-semibold text-gray-100">' + esc(m.name) + '</div>' +
+          (m.note ? '<div class="text-sm text-gray-500 mt-1">' + esc(m.note) + '</div>' : '') +
+        '</div>';
+    }).join('');
+
+    sec.classList.remove('hidden');
+    if (window.AOS && typeof AOS.refresh === 'function') { AOS.refresh(); }
+  }
+
   function render(members) {
     stat.textContent = members.length;
 
@@ -365,7 +414,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
       return '' +
         '<div class="row rounded-xl px-5 py-3.5 flex flex-wrap items-center gap-x-4 gap-y-2">' +
           '<div class="font-semibold text-gray-100 flex-1 min-w-[10rem]">' + esc(m.name) + '</div>' +
-          '<span class="badge ' + badgeClass(role) + '">' + esc(role).toUpperCase() + '</span>' +
+          '<span class="badge ' + badgeClass(role) + '">' + esc(String(role).toUpperCase()) + '</span>' +
           (m.founding ? '<span class="badge b-found">FOUNDING</span>' : '') +
           '<div class="text-sm text-gray-500 mono w-full sm:w-auto">' + esc(date) + '</div>' +
         '</div>';
@@ -381,6 +430,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
   Promise.all([grab('members.json', false), grab(SHEET_CSV, true)])
     .then(function (res) {
       var manual = (res[0] && res[0].members) || [];
+      renderCoreTeam(manual);
       var signups = res[1] ? fromSheet(res[1]) : [];
 
       if (!res[0] && !res[1]) { err.classList.remove('hidden'); return; }
