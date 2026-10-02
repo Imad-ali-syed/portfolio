@@ -57,10 +57,10 @@ th{font-family:var(--font-mono);font-size:0.75rem;font-weight:500;letter-spacing
 td.num,th.num{text-align:right;font-family:var(--font-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
 
 /* The big schedule table */
-.schedule{min-width:820px}
+.schedule{min-width:900px}
 .schedule th:nth-child(1){width:112px}
-.schedule th:nth-child(2){width:31%}
-.schedule th:nth-child(3){width:25%}
+.schedule th:nth-child(2){width:28%}
+.schedule th:nth-child(3){width:22%}
 .schedule td+td{border-left:1px solid var(--line)}
 .schedule th+th{border-left:1px solid var(--line)}
 .when{font-family:var(--font-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -81,6 +81,7 @@ tr.off td{color:var(--muted);background:var(--bg)}
 
 /* Grading */
 .grading{max-width:720px}
+.lede{font-size:0.9375rem;color:var(--muted);max-width:65ch}
 tr.sub td{color:var(--muted);font-size:0.875rem;padding-block:7px;border-bottom-style:dashed}
 tr.sub td:first-child{padding-left:30px}
 tr.total td{font-weight:600}
@@ -95,15 +96,15 @@ footer{font-size:0.8125rem;color:var(--muted);border-top:1px solid var(--line);p
 
   <header class="masthead">
     <p class="eyebrow">LaGuardia Community College · Fall 2026</p>
-    <h1>MAC 246 deadlines</h1>
+    <h1>MAC 246 course</h1>
     <p class="sub">Advanced Network Security. Every Saturday of the semester, what we cover, and what you submit.</p>
-    <p class="facts"><span>Saturdays</span><span>Room B-332</span><span>Instructor: Imad Ali Syed</span></p>
+    <p class="facts"><span>Saturdays</span><span>Room B-332</span><span>Instructor: Imad Ali Syed</span><span>Office hours: Saturdays, 4:00–5:00 PM on Zoom</span></p>
   </header>
 
   <section class="rules" aria-label="How the course works">
     <div>
       <h3>Labs are individual</h3>
-      <p>There are five: the setup lab and Labs 1 to 4. Each of Labs 1 to 4 runs over two Saturdays, and your own report is due the Saturday after.</p>
+      <p>There are five: the setup lab and Labs 1 to 4. Each of Labs 1 to 4 runs over two Saturdays, and your own report is due the following Friday night.</p>
     </div>
     <div>
       <h3>The project is group work</h3>
@@ -117,10 +118,11 @@ footer{font-size:0.8125rem;color:var(--muted);border-top:1px solid var(--line);p
 
   <section class="section">
     <h2>Semester schedule</h2>
+    <p class="lede">Written work is due on Brightspace by 11:59 PM on the Friday before class, so everything is in before the next lecture starts. Project check-ins and the presentation happen in class on Saturday.</p>
     <div class="tablewrap">
       <table class="schedule">
         <thead>
-          <tr><th>Date</th><th>Lecture (first 2 hours)</th><th>Lab session (last 2 hours)</th><th>Due this day</th></tr>
+          <tr><th>Date</th><th>Lecture (first 2 hours)</th><th>Lab session (last 2 hours)</th><th>Due for this class</th></tr>
         </thead>
         <tbody>
           <tr>
@@ -133,23 +135,23 @@ footer{font-size:0.8125rem;color:var(--muted);border-top:1px solid var(--line);p
             <td class="when"><b>Sat Sep 26</b><span>Week 2</span></td>
             <td>Networking basics</td>
             <td>Setup lab: build your lab environment</td>
-            <td><ul class="due">
-              <li data-type="lab"><span class="tag">Lab</span><span>Setup lab: screenshot of your 2 VMs pinging each other. Due Fri Oct 2, 11:59 PM, on Brightspace</span><span class="wt">5%</span></li>
-            </ul></td>
+            <td class="none">Nothing due</td>
           </tr>
           <tr>
             <td class="when"><b>Sat Oct 3</b><span>Week 3</span></td>
             <td>Threats: malware, social engineering, authentication and identity; application attacks<p class="note">HW1 handed out. Project options announced.</p></td>
             <td>Lab 1 starts: identifying and mitigating threats</td>
-            <td class="none">Nothing due</td>
+            <td><ul class="due">
+              <li data-type="lab"><span class="tag">Lab</span><span>Setup lab: screenshot of your 2 VMs pinging each other</span><span class="wt">Fri Oct 2 · 5%</span></li>
+            </ul></td>
           </tr>
           <tr>
             <td class="when"><b>Sat Oct 10</b><span>Week 4</span></td>
             <td>Security policies, risk management, incident response; physical security</td>
             <td>Finish Lab 1, or project time</td>
             <td><ul class="due">
-              <li data-type="hw"><span class="tag">Homework</span><span>HW1</span><span class="wt">3%</span></li>
-              <li data-type="proj"><span class="tag">Project</span><span>Team and project choice locked</span><span class="wt">required</span></li>
+              <li data-type="hw"><span class="tag">Homework</span><span>HW1</span><span class="wt">Fri Oct 9 · 3%</span></li>
+              <li data-type="proj"><span class="tag">Project</span><span>Team and project choice locked</span><span class="wt">In class · required</span></li>
             </ul></td>
           </tr>
           <tr>
@@ -157,7 +159,7 @@ footer{font-size:0.8125rem;color:var(--muted);border-top:1px solid var(--line);p
             <td>Cryptography, algorithms and encryption</td>
             <td>Lab 2 starts: encryption and data protection</td>
             <td><ul class="due">
-              <li data-type="lab"><span class="tag">Lab</span><span>Lab 1 report</span><span class="wt">5%</span></li>
+              <li data-type="lab"><span class="tag">Lab</span><span>Lab 1 report</span><span class="wt">Fri Oct 16 · 5%</span></li>
             </ul></td>
           </tr>
           <tr>
@@ -165,8 +167,8 @@ footer{font-size:0.8125rem;color:var(--muted);border-top:1px solid var(--line);p
             <td>Data defenses, redundancy, backup and restore</td>
             <td>Finish Lab 2 (backup part), or project time</td>
             <td><ul class="due">
-              <li data-type="hw"><span class="tag">Homework</span><span>HW2</span><span class="wt">3%</span></li>
-              <li data-type="proj"><span class="tag">Project</span><span>Check-in 1: proposal with risk assessment</span><span class="wt">5%</span></li>
+              <li data-type="hw"><span class="tag">Homework</span><span>HW2</span><span class="wt">Fri Oct 23 · 3%</span></li>
+              <li data-type="proj"><span class="tag">Project</span><span>Check-in 1: proposal with risk assessment</span><span class="wt">In class · 5%</span></li>
             </ul></td>
           </tr>
           <tr>
@@ -174,7 +176,7 @@ footer{font-size:0.8125rem;color:var(--muted);border-top:1px solid var(--line);p
             <td>Denial of service, DNS attacks, firewalls</td>
             <td>Lab 3 starts: firewall setup and DoS simulation</td>
             <td><ul class="due">
-              <li data-type="lab"><span class="tag">Lab</span><span>Lab 2 report</span><span class="wt">5%</span></li>
+              <li data-type="lab"><span class="tag">Lab</span><span>Lab 2 report</span><span class="wt">Fri Oct 30 · 5%</span></li>
             </ul></td>
           </tr>
           <tr>
@@ -182,7 +184,7 @@ footer{font-size:0.8125rem;color:var(--muted);border-top:1px solid var(--line);p
             <td>Virtual private networks; network device security (switches, routers, file servers)</td>
             <td>Finish Lab 3, or project time</td>
             <td><ul class="due">
-              <li data-type="hw"><span class="tag">Homework</span><span>HW3</span><span class="wt">3%</span></li>
+              <li data-type="hw"><span class="tag">Homework</span><span>HW3</span><span class="wt">Fri Nov 6 · 3%</span></li>
             </ul></td>
           </tr>
           <tr>
@@ -190,8 +192,8 @@ footer{font-size:0.8125rem;color:var(--muted);border-top:1px solid var(--line);p
             <td>Web application attacks, browsers, wireless security</td>
             <td>Lab 4 starts: wireless attacks and penetration testing</td>
             <td><ul class="due">
-              <li data-type="lab"><span class="tag">Lab</span><span>Lab 3 report</span><span class="wt">5%</span></li>
-              <li data-type="proj"><span class="tag">Project</span><span>Check-in 2: progress demo</span><span class="wt">5%</span></li>
+              <li data-type="lab"><span class="tag">Lab</span><span>Lab 3 report</span><span class="wt">Fri Nov 13 · 5%</span></li>
+              <li data-type="proj"><span class="tag">Project</span><span>Check-in 2: progress demo</span><span class="wt">In class · 5%</span></li>
             </ul></td>
           </tr>
           <tr>
@@ -199,7 +201,7 @@ footer{font-size:0.8125rem;color:var(--muted);border-top:1px solid var(--line);p
             <td>Assessment, audits, penetration testing, protocol analysis, logging</td>
             <td>Finish Lab 4, or project time</td>
             <td><ul class="due">
-              <li data-type="hw"><span class="tag">Homework</span><span>HW4</span><span class="wt">3%</span></li>
+              <li data-type="hw"><span class="tag">Homework</span><span>HW4</span><span class="wt">Fri Nov 20 · 3%</span></li>
             </ul></td>
           </tr>
           <tr class="off">
@@ -211,24 +213,24 @@ footer{font-size:0.8125rem;color:var(--muted);border-top:1px solid var(--line);p
             <td>Course wrap-up and Security+ review</td>
             <td>Project work and presentation dry run</td>
             <td><ul class="due">
-              <li data-type="lab"><span class="tag">Lab</span><span>Lab 4 report</span><span class="wt">5%</span></li>
-              <li data-type="hw"><span class="tag">Homework</span><span>HW5</span><span class="wt">3%</span></li>
-              <li data-type="proj"><span class="tag">Project</span><span>Check-in 3: presentation dry run</span><span class="wt">5%</span></li>
+              <li data-type="lab"><span class="tag">Lab</span><span>Lab 4 report</span><span class="wt">Fri Dec 4 · 5%</span></li>
+              <li data-type="hw"><span class="tag">Homework</span><span>HW5</span><span class="wt">Fri Dec 4 · 3%</span></li>
+              <li data-type="proj"><span class="tag">Project</span><span>Check-in 3: presentation dry run</span><span class="wt">In class · 5%</span></li>
             </ul></td>
           </tr>
           <tr>
             <td class="when"><b>Sat Dec 12</b><span>Week 12</span></td>
             <td colspan="2">Group presentations, all four hours</td>
             <td><ul class="due">
-              <li data-type="proj"><span class="tag">Project</span><span>Group presentation</span><span class="wt">20%</span></li>
-              <li data-type="proj"><span class="tag">Project</span><span>Final project report</span><span class="wt">10%</span></li>
+              <li data-type="proj"><span class="tag">Project</span><span>Group presentation</span><span class="wt">In class · 20%</span></li>
+              <li data-type="proj"><span class="tag">Project</span><span>Final project report</span><span class="wt">Fri Dec 11 · 10%</span></li>
             </ul></td>
           </tr>
           <tr>
             <td class="when"><b>Sat Dec 19</b><span>Week 13</span></td>
             <td colspan="2">Make-up session for missed labs or presentations</td>
             <td><ul class="due">
-              <li data-type="proj"><span class="tag">Project</span><span>Peer evaluation of your teammates</span><span class="wt">5%</span></li>
+              <li data-type="proj"><span class="tag">Project</span><span>Peer evaluation of your teammates</span><span class="wt">Fri Dec 18 · 5%</span></li>
             </ul></td>
           </tr>
         </tbody>
@@ -251,8 +253,8 @@ footer{font-size:0.8125rem;color:var(--muted);border-top:1px solid var(--line);p
           <tr class="sub"><td>Check-in 2</td><td>Progress demo, Nov 14</td><td class="num">5%</td></tr>
           <tr class="sub"><td>Check-in 3</td><td>Presentation dry run, Dec 5</td><td class="num">5%</td></tr>
           <tr class="sub"><td>Presentation</td><td>In class, Dec 12</td><td class="num">20%</td></tr>
-          <tr class="sub"><td>Final report</td><td>Dec 12</td><td class="num">10%</td></tr>
-          <tr class="sub"><td>Peer evaluation</td><td>Dec 19</td><td class="num">5%</td></tr>
+          <tr class="sub"><td>Final report</td><td>Fri Dec 11</td><td class="num">10%</td></tr>
+          <tr class="sub"><td>Peer evaluation</td><td>Fri Dec 18</td><td class="num">5%</td></tr>
           <tr class="total"><td>Total</td><td></td><td class="num">100%</td></tr>
         </tbody>
       </table>
@@ -263,8 +265,8 @@ footer{font-size:0.8125rem;color:var(--muted);border-top:1px solid var(--line);p
     <h2>Late work and questions</h2>
     <div class="prose">
       <p>Late work is accepted only with a serious reason and the instructor's approval. Approved late work loses 20% for every three days and is not accepted after one week. Online submissions close automatically at the deadline.</p>
-      <p>How and where to submit each item is announced in class.</p>
-      <p>Questions go to the instructor: <span class="contact">imadali.syed17@lagcc.cuny.edu</span></p>
+      <p>Submit written work on Brightspace by 11:59 PM on the Friday it is due.</p>
+      <p>Office hours are Saturdays from 4:00 to 5:00 PM on Zoom. Questions can also go to the instructor by email: <span class="contact">imadali.syed17@lagcc.cuny.edu</span></p>
     </div>
   </section>
 
