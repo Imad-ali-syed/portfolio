@@ -1,0 +1,274 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>MAC 246 Course</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a static page built around one big schedule table (date, lecture, lab, due),
+   followed by the grading table and the late-work rules. No script. */
+:root{
+  --bg:#F3F6F8; --surface:#FFFFFF; --fg:#15202B; --muted:#56657A; --line:#D5DDE5; --head:#E6ECF1;
+  --accent:#0B6E6E;
+  --lab:#3442B8; --hw:#8A5200; --proj:#A1246A;
+  --font-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --font-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F151B; --surface:#17202A; --fg:#E6ECF2; --muted:#96A5B6; --line:#2B3744; --head:#1F2A36;
+    --accent:#52C7C2;
+    --lab:#A3AFFF; --hw:#F0B552; --proj:#F291C0;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F151B; --surface:#17202A; --fg:#E6ECF2; --muted:#96A5B6; --line:#2B3744; --head:#1F2A36;
+  --accent:#52C7C2;
+  --lab:#A3AFFF; --hw:#F0B552; --proj:#F291C0;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.5}
+.page{max-width:1080px;margin-inline:auto;padding-inline:20px;padding-block:36px 72px;display:flex;flex-direction:column;gap:36px}
+h1,h2,h3,p,ul,table{margin:0}
+ul{padding:0;list-style:none}
+h1,h2{font-family:var(--font-display);text-wrap:balance;line-height:1.1}
+h1{font-size:clamp(2rem,6vw,3rem);font-weight:800;letter-spacing:-0.02em}
+h2{font-size:1.375rem;font-weight:800;letter-spacing:-0.01em}
+.eyebrow{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+
+/* Header */
+.masthead{display:flex;flex-direction:column;gap:10px}
+.masthead .sub{font-size:1.0625rem;color:var(--muted);max-width:60ch}
+.facts{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--font-mono);font-size:0.8125rem;color:var(--muted)}
+
+/* Ground rules */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px 28px}
+.rules h3{font-size:0.9375rem;font-weight:600;margin-bottom:4px}
+.rules p{font-size:0.9375rem;color:var(--muted)}
+
+/* Tables */
+.section{display:flex;flex-direction:column;gap:16px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:0.9375rem}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+th{font-family:var(--font-mono);font-size:0.75rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);background:var(--head)}
+td.num,th.num{text-align:right;font-family:var(--font-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* The big schedule table */
+.schedule{min-width:820px}
+.schedule th:nth-child(1){width:112px}
+.schedule th:nth-child(2){width:31%}
+.schedule th:nth-child(3){width:25%}
+.schedule td+td{border-left:1px solid var(--line)}
+.schedule th+th{border-left:1px solid var(--line)}
+.when{font-family:var(--font-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.when b{display:block;font-weight:500;font-size:1rem}
+.when span{font-size:0.75rem;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase}
+.none{color:var(--muted)}
+.note{color:var(--muted);font-size:0.875rem}
+tr.off td{color:var(--muted);background:var(--bg)}
+.due{display:flex;flex-direction:column;gap:8px}
+.due li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:baseline}
+.due .wt{font-family:var(--font-mono);font-size:0.8125rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+[data-type]{--c:var(--muted)}
+[data-type="lab"]{--c:var(--lab)}
+[data-type="hw"]{--c:var(--hw)}
+[data-type="proj"]{--c:var(--proj)}
+.tag{font-family:var(--font-mono);font-size:0.6875rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--c);
+  background:color-mix(in srgb,var(--c) 14%,transparent);padding:2px 7px;border-radius:3px;white-space:nowrap}
+
+/* Grading */
+.grading{max-width:720px}
+tr.sub td{color:var(--muted);font-size:0.875rem;padding-block:7px;border-bottom-style:dashed}
+tr.sub td:first-child{padding-left:30px}
+tr.total td{font-weight:600}
+
+.prose{max-width:65ch;display:flex;flex-direction:column;gap:10px}
+.prose p{font-size:0.9375rem}
+.contact{font-family:var(--font-mono);font-size:0.875rem;user-select:all;overflow-wrap:anywhere}
+footer{font-size:0.8125rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">LaGuardia Community College · Fall 2026</p>
+    <h1>MAC 246 deadlines</h1>
+    <p class="sub">Advanced Network Security. Every Saturday of the semester, what we cover, and what you submit.</p>
+    <p class="facts"><span>Saturdays</span><span>Room B-332</span><span>Instructor: Imad Ali Syed</span></p>
+  </header>
+
+  <section class="rules" aria-label="How the course works">
+    <div>
+      <h3>Labs are individual</h3>
+      <p>There are five: the setup lab and Labs 1 to 4. Each of Labs 1 to 4 runs over two Saturdays, and your own report is due the Saturday after.</p>
+    </div>
+    <div>
+      <h3>The project is group work</h3>
+      <p>Pick one project with your team. If you finish a lab early, use the second lab session to work on it together.</p>
+    </div>
+    <div>
+      <h3>No midterm or final exam</h3>
+      <p>Your grade comes from labs, homework, the project and showing up. Presentations are on December 12.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Semester schedule</h2>
+    <div class="tablewrap">
+      <table class="schedule">
+        <thead>
+          <tr><th>Date</th><th>Lecture (first 2 hours)</th><th>Lab session (last 2 hours)</th><th>Due this day</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="when"><b>Sat Sep 19</b><span>Week 1</span></td>
+            <td>Course introduction</td>
+            <td class="none">No lab</td>
+            <td class="none">Nothing due</td>
+          </tr>
+          <tr>
+            <td class="when"><b>Sat Sep 26</b><span>Week 2</span></td>
+            <td>Networking basics</td>
+            <td>Setup lab: build your lab environment</td>
+            <td class="none">Nothing due</td>
+          </tr>
+          <tr>
+            <td class="when"><b>Sat Oct 3</b><span>Week 3</span></td>
+            <td>Threats: malware, social engineering, authentication and identity; application attacks<p class="note">HW1 handed out. Project options announced.</p></td>
+            <td>Lab 1 starts: identifying and mitigating threats</td>
+            <td><ul class="due">
+              <li data-type="lab"><span class="tag">Lab</span><span>Setup lab: working lab environment, checked in class</span><span class="wt">5%</span></li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td class="when"><b>Sat Oct 10</b><span>Week 4</span></td>
+            <td>Security policies, risk management, incident response; physical security</td>
+            <td>Finish Lab 1, or project time</td>
+            <td><ul class="due">
+              <li data-type="hw"><span class="tag">Homework</span><span>HW1</span><span class="wt">3%</span></li>
+              <li data-type="proj"><span class="tag">Project</span><span>Team and project choice locked</span><span class="wt">required</span></li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td class="when"><b>Sat Oct 17</b><span>Week 5</span></td>
+            <td>Cryptography, algorithms and encryption</td>
+            <td>Lab 2 starts: encryption and data protection</td>
+            <td><ul class="due">
+              <li data-type="lab"><span class="tag">Lab</span><span>Lab 1 report</span><span class="wt">5%</span></li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td class="when"><b>Sat Oct 24</b><span>Week 6</span></td>
+            <td>Data defenses, redundancy, backup and restore</td>
+            <td>Finish Lab 2 (backup part), or project time</td>
+            <td><ul class="due">
+              <li data-type="hw"><span class="tag">Homework</span><span>HW2</span><span class="wt">3%</span></li>
+              <li data-type="proj"><span class="tag">Project</span><span>Check-in 1: proposal with risk assessment</span><span class="wt">5%</span></li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td class="when"><b>Sat Oct 31</b><span>Week 7</span></td>
+            <td>Denial of service, DNS attacks, firewalls</td>
+            <td>Lab 3 starts: firewall setup and DoS simulation</td>
+            <td><ul class="due">
+              <li data-type="lab"><span class="tag">Lab</span><span>Lab 2 report</span><span class="wt">5%</span></li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td class="when"><b>Sat Nov 7</b><span>Week 8</span></td>
+            <td>Virtual private networks; network device security (switches, routers, file servers)</td>
+            <td>Finish Lab 3, or project time</td>
+            <td><ul class="due">
+              <li data-type="hw"><span class="tag">Homework</span><span>HW3</span><span class="wt">3%</span></li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td class="when"><b>Sat Nov 14</b><span>Week 9</span></td>
+            <td>Web application attacks, browsers, wireless security</td>
+            <td>Lab 4 starts: wireless attacks and penetration testing</td>
+            <td><ul class="due">
+              <li data-type="lab"><span class="tag">Lab</span><span>Lab 3 report</span><span class="wt">5%</span></li>
+              <li data-type="proj"><span class="tag">Project</span><span>Check-in 2: progress demo</span><span class="wt">5%</span></li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td class="when"><b>Sat Nov 21</b><span>Week 10</span></td>
+            <td>Assessment, audits, penetration testing, protocol analysis, logging</td>
+            <td>Finish Lab 4, or project time</td>
+            <td><ul class="due">
+              <li data-type="hw"><span class="tag">Homework</span><span>HW4</span><span class="wt">3%</span></li>
+            </ul></td>
+          </tr>
+          <tr class="off">
+            <td class="when"><b>Sat Nov 28</b><span>No class</span></td>
+            <td colspan="3">Thanksgiving weekend. The college has no classes scheduled.</td>
+          </tr>
+          <tr>
+            <td class="when"><b>Sat Dec 5</b><span>Week 11</span></td>
+            <td>Course wrap-up and Security+ review</td>
+            <td>Project work and presentation dry run</td>
+            <td><ul class="due">
+              <li data-type="lab"><span class="tag">Lab</span><span>Lab 4 report</span><span class="wt">5%</span></li>
+              <li data-type="hw"><span class="tag">Homework</span><span>HW5</span><span class="wt">3%</span></li>
+              <li data-type="proj"><span class="tag">Project</span><span>Check-in 3: presentation dry run</span><span class="wt">5%</span></li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td class="when"><b>Sat Dec 12</b><span>Week 12</span></td>
+            <td colspan="2">Group presentations, all four hours</td>
+            <td><ul class="due">
+              <li data-type="proj"><span class="tag">Project</span><span>Group presentation</span><span class="wt">20%</span></li>
+              <li data-type="proj"><span class="tag">Project</span><span>Final project report</span><span class="wt">10%</span></li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td class="when"><b>Sat Dec 19</b><span>Week 13</span></td>
+            <td colspan="2">Make-up session for missed labs or presentations</td>
+            <td><ul class="due">
+              <li data-type="proj"><span class="tag">Project</span><span>Peer evaluation of your teammates</span><span class="wt">5%</span></li>
+            </ul></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>How you are graded</h2>
+    <div class="tablewrap grading">
+      <table>
+        <thead><tr><th>Component</th><th>How</th><th class="num">Weight</th></tr></thead>
+        <tbody>
+          <tr><td>Attendance</td><td>Being in class each Saturday</td><td class="num">5%</td></tr>
+          <tr><td>Interaction</td><td>Taking part in class</td><td class="num">5%</td></tr>
+          <tr><td>Labs</td><td>5 labs at 5% each (the setup lab and Labs 1 to 4), done individually</td><td class="num">25%</td></tr>
+          <tr><td>Homework</td><td>5 assignments at 3% each</td><td class="num">15%</td></tr>
+          <tr><td>Project</td><td>One project, done as a group</td><td class="num">50%</td></tr>
+          <tr class="sub"><td>Check-in 1</td><td>Proposal with risk assessment, Oct 24</td><td class="num">5%</td></tr>
+          <tr class="sub"><td>Check-in 2</td><td>Progress demo, Nov 14</td><td class="num">5%</td></tr>
+          <tr class="sub"><td>Check-in 3</td><td>Presentation dry run, Dec 5</td><td class="num">5%</td></tr>
+          <tr class="sub"><td>Presentation</td><td>In class, Dec 12</td><td class="num">20%</td></tr>
+          <tr class="sub"><td>Final report</td><td>Dec 12</td><td class="num">10%</td></tr>
+          <tr class="sub"><td>Peer evaluation</td><td>Dec 19</td><td class="num">5%</td></tr>
+          <tr class="total"><td>Total</td><td></td><td class="num">100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Late work and questions</h2>
+    <div class="prose">
+      <p>Late work is accepted only with a serious reason and the instructor's approval. Approved late work loses 20% for every three days and is not accepted after one week. Online submissions close automatically at the deadline.</p>
+      <p>How and where to submit each item is announced in class.</p>
+      <p>Questions go to the instructor: <span class="contact">imadali.syed17@lagcc.cuny.edu</span></p>
+    </div>
+  </section>
+
+  <footer>The schedule may change. Changes are announced in class. Last updated October 1, 2026.</footer>
+</div>
+
+</body></html>
