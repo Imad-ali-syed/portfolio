@@ -4,55 +4,282 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio - Imad Ali Syed</title>
+  <meta name="description" content="Projects by Imad Ali Syed: AI-based ransomware detection, phishing detection, a secure ATM system in Rust, enterprise network design, hackathon builds and web projects.">
   <link rel="icon" type="image/png" href="assets/images/favicon.jpeg" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    .card { background:#1f2937; border:1px solid #374151; transition:transform .25s, border-color .25s; }
+    .card:hover { transform:translateY(-4px); border-color:#a855f7; }
+    .chip { font-size:.72rem; letter-spacing:.04em; padding:.2rem .6rem; border-radius:9999px; background:rgba(168,85,247,.14); color:#d8b4fe; border:1px solid rgba(168,85,247,.35); white-space:nowrap; }
+    .kind { font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:#22d3ee; }
+    .ev{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:600;padding:.35rem .7rem;border-radius:.5rem;background:#111827;border:1px solid #4b5563;color:#d8b4fe;transition:border-color .2s,color .2s}
+    .ev:hover{border-color:#a855f7;color:#fff}
+    .ev-i{font-size:.7rem;color:#22d3ee;font-family:ui-monospace,monospace}
+  </style>
 </head>
 <body class="pt-24 bg-gray-900 text-gray-300">
 
-  <!-- Navbar -->
-  <header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-    <a href="/index.html"><div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div></a>
-    <nav class="space-x-6">
+<!-- Navbar (same on every page; the button shows the menu on phones) -->
+<header class="bg-gray-900 text-gray-200 fixed top-0 left-0 w-full z-50 shadow-lg">
+  <div class="px-6 py-5 flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-bold text-purple-500">Imad Ali Syed</a>
+    <nav class="hidden md:flex gap-6" aria-label="Main">
       <a href="index.html" class="hover:text-purple-400">Home</a>
       <a href="about.html" class="hover:text-purple-400">About</a>
-      <!-- <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a> -->
+      <a href="club.html" class="hover:text-purple-400">Club</a>
+      <a href="portfolio.html" class="text-purple-400" aria-current="page">Portfolio</a>
       <a href="skills.html" class="hover:text-purple-400">Skills</a>
-      <!-- <a href="blog.html" class="hover:text-purple-400">Blog</a> -->
       <a href="contact.html" class="hover:text-purple-400">Contact</a>
     </nav>
-  </header>
-  
-  <!-- Copy header snippet here -->
+    <button id="navToggle" type="button" class="md:hidden p-2 -mr-2 text-gray-300 hover:text-purple-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav id="mobileNav" class="hidden md:hidden border-t border-gray-800 px-6 pb-4" aria-label="Main">
+      <a href="index.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Home</a>
+      <a href="about.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">About</a>
+      <a href="club.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Club</a>
+      <a href="portfolio.html" class="block py-3 border-b border-gray-800 text-purple-400" aria-current="page">Portfolio</a>
+      <a href="skills.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Skills</a>
+      <a href="contact.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Contact</a>
+  </nav>
+</header>
+<script>
+(function () {
+  var b = document.getElementById('navToggle'), m = document.getElementById('mobileNav');
+  if (!b || !m) { return; }
+  b.addEventListener('click', function () {
+    var open = !m.classList.toggle('hidden');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+})();
+</script>
 
-  <section class="max-w-6xl mx-auto px-6 py-16" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold mb-10 text-purple-500">My Projects</h2>
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h1 class="text-3xl md:text-4xl font-bold mb-3 text-purple-500" data-aos="fade-up">My Projects</h1>
+    <p class="text-gray-400 max-w-3xl mb-12" data-aos="fade-up">Security research, competitions and things I've built, from my MS in Cybersecurity at CCNY back to my engineering degree in Hyderabad. Click any photo to see it full size.</p>
 
-      <div class="bg-gray-800 rounded-lg shadow-lg p-6 hover:scale-105 transition-transform">
-        <h3 class="text-xl font-semibold mb-2 text-purple-400">Portfolio Website</h3>
-        <p class="text-gray-300 mb-2">A professional, responsive portfolio site showcasing my projects and skills.</p>
-        <a href="#" class="text-purple-500 font-semibold hover:underline">View Project →</a>
-      </div>
+    <h2 class="text-2xl font-semibold text-purple-400 mb-6" data-aos="fade-up">Security, cryptography &amp; machine learning</h2>
+    <div class="grid gap-6 md:grid-cols-2 mb-16">
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-gallery>
+        <img src="assets/images/events/pitchfest-team.jpg" alt="My capstone team at CUNY PitchFest" loading="lazy" data-lightbox class="w-full h-56 object-cover cursor-zoom-in"><div class="grid grid-cols-3 gap-2 px-6 pt-4"><img src="assets/images/events/pitchfest-2.jpg" alt="Talking about our IDS at CUNY PitchFest" loading="lazy" data-lightbox class="w-full h-20 object-cover rounded cursor-zoom-in border border-gray-700 hover:border-purple-500"><img src="assets/images/events/pitchfest-3.jpg" alt="Feedback from industry professionals at PitchFest" loading="lazy" data-lightbox class="w-full h-20 object-cover rounded cursor-zoom-in border border-gray-700 hover:border-purple-500"><img src="assets/images/events/pitchfest-4.jpg" alt="Networking at CUNY PitchFest" loading="lazy" data-lightbox class="w-full h-20 object-cover rounded cursor-zoom-in border border-gray-700 hover:border-purple-500"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">Capstone research &middot; MS Cybersecurity, CCNY</div>
+          <h3 class="text-xl font-semibold text-white mb-3"><a href="https://github.com/ghost-protocol/capstone-project-ccny" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-4">AI-Based Ransomware Intrusion Detection System</a></h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-300 flex-1"><li>A Flask-based real-time IDS that combines live packet analysis, an ML network-flow classifier and a file-system ransomware monitor, all streaming to a live web dashboard.</li><li>Captures packets with Scapy, aggregates flows and classifies each one with a Random Forest model trained on CICIDS2017, plus port-scan detection.</li><li>Watches the file system for ransomware behaviour, and falls back to heuristic detection if the model is missing.</li><li>Pitched at CUNY PitchFest 2026 with my capstone team.</li></ul>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">Python</span><span class="chip">Flask</span><span class="chip">Scapy</span><span class="chip">Scikit-learn</span><span class="chip">Pandas</span><span class="chip">CICIDS2017</span></div>
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-700/70"><a href="https://github.com/ghost-protocol/capstone-project-ccny" target="_blank" rel="noopener" class="ev"><span class="ev-i">&lt;/&gt;</span>Code on GitHub</a><a href="https://www.linkedin.com/feed/update/urn:li:activity:7461896932832100352/" target="_blank" rel="noopener" class="ev"><span class="ev-i">in</span>PitchFest post</a><a href="#" data-open-gallery class="ev">&#128247; 4 photos</a></div>
+        </div>
+      </article>
 
-      <div class="bg-gray-800 rounded-lg shadow-lg p-6 hover:scale-105 transition-transform">
-        <h3 class="text-xl font-semibold mb-2 text-purple-400">HackSim</h3>
-        <p class="text-gray-300 mb-2">A secure simulation platform to learn ethical hacking safely.</p>
-        <a href="#" class="text-purple-500 font-semibold hover:underline">View Project →</a>
-      </div>
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="50" data-gallery>
+        <img src="assets/images/events/regodit-hackathon-team.jpg" alt="The Regodit team at the AI x Finance Hackathon" loading="lazy" data-lightbox class="w-full h-56 object-cover cursor-zoom-in"><div class="grid grid-cols-3 gap-2 px-6 pt-4"><img src="assets/images/events/regodit-hackathon-venue.jpg" alt="At the AI x Finance Hackathon, Station 3 NYC" loading="lazy" data-lightbox class="w-full h-20 object-cover rounded cursor-zoom-in border border-gray-700 hover:border-purple-500"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">AI x Finance Hackathon &middot; Money Talks, NYC &middot; 2026</div>
+          <h3 class="text-xl font-semibold text-white mb-3"><a href="https://github.com/akshayatam/regobot" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-4">Regodit: Evidence-First AI Security Analyst</a></h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-300 flex-1"><li>An AI analyst for vendor-security questionnaires: it searches your policies, assessments and contracts first and cites a stable evidence ID for every claim.</li><li>Asks one focused follow-up when evidence runs out, and flags contradictions instead of smoothing them over. Policy intent never counts as proof of implementation.</li><li>Built on LangGraph and OpenAI structured outputs. Tracing with Block Convey PRISM exposed an LLM omission hiding an MFA policy/implementation conflict, which we fixed (98.89 trajectory score).</li><li>Built with Nikisha Roberts, Shakthi Shyam and Akshay Atam.</li></ul>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">LangGraph</span><span class="chip">OpenAI</span><span class="chip">RAG</span><span class="chip">GRC</span><span class="chip">Python</span></div>
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-700/70"><a href="https://github.com/akshayatam/regobot" target="_blank" rel="noopener" class="ev"><span class="ev-i">&lt;/&gt;</span>Code on GitHub</a><a href="https://www.linkedin.com/feed/update/urn:li:activity:7502193320241049600/" target="_blank" rel="noopener" class="ev"><span class="ev-i">in</span>Hackathon post</a><a href="#" data-open-gallery class="ev">&#128247; 2 photos</a></div>
+        </div>
+      </article>
 
-      <div class="bg-gray-800 rounded-lg shadow-lg p-6 hover:scale-105 transition-transform">
-        <h3 class="text-xl font-semibold mb-2 text-purple-400">Cyber Tools</h3>
-        <p class="text-gray-300 mb-2">Collection of useful scripts and automation tools for security tasks.</p>
-        <a href="#" class="text-purple-500 font-semibold hover:underline">View Project →</a>
-      </div>
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-gallery>
+        
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">MS Cybersecurity, CCNY &middot; Applied Cryptography</div>
+          <h3 class="text-xl font-semibold text-white mb-3"><a href="https://github.com/Imad-ali-syed/applied_cryptography" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-4">Threshold ElGamal Encryption</a></h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-300 flex-1"><li>A (t+1)-out-of-n threshold ElGamal scheme: any t+1 of n players can decrypt together, and the secret key is never reconstructed in memory.</li><li>Splits the private key with Shamir Secret Sharing and uses hybrid ElGamal + AES encryption.</li><li>Includes a GUI app that walks through two-phase threshold decryption.</li></ul>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">Python</span><span class="chip">ElGamal</span><span class="chip">Shamir Secret Sharing</span><span class="chip">AES</span></div>
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-700/70"><a href="https://github.com/Imad-ali-syed/applied_cryptography" target="_blank" rel="noopener" class="ev"><span class="ev-i">&lt;/&gt;</span>Code on GitHub</a></div>
+        </div>
+      </article>
 
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="50" data-gallery>
+        <img src="assets/images/events/privacy-preserving-facial-verification-slide.jpg" alt="Title slide of the facial verification presentation" loading="lazy" data-lightbox class="w-full h-56 object-cover cursor-zoom-in">
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">MS Cybersecurity, CCNY &middot; Data Privacy</div>
+          <h3 class="text-xl font-semibold text-white mb-3"><a href="https://github.com/Imadalisyed/Facial_Detection_Project" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-4">Privacy-Preserving Facial Verification</a></h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-300 flex-1"><li>A one-to-one facial verification web app: a user is only ever matched against their own enrolled template, never identified from a crowd.</li><li>Raw photos are discarded after embedding generation; only Fernet-encrypted ArcFace embeddings are stored.</li><li>Consent-based enrollment, a right-to-deletion route, and fairness auditing built in.</li></ul>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">Python</span><span class="chip">Flask</span><span class="chip">InsightFace</span><span class="chip">Cryptography</span><span class="chip">Privacy by design</span></div>
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-700/70"><a href="https://github.com/Imadalisyed/Facial_Detection_Project" target="_blank" rel="noopener" class="ev"><span class="ev-i">&lt;/&gt;</span>Code on GitHub</a><a href="assets/docs/privacy-preserving-facial-verification-slides.pdf" target="_blank" rel="noopener" class="ev"><span class="ev-i">&#128196;</span>Slides (PDF)</a><a href="#" data-open-gallery class="ev">&#128247; 1 photo</a></div>
+        </div>
+      </article>
+
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-gallery>
+        <img src="assets/images/events/phishing-confusion-matrix.jpg" alt="Confusion matrix for the final phishing-detection agent" loading="lazy" data-lightbox class="w-full h-56 object-cover cursor-zoom-in">
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">MS Cybersecurity, CCNY</div>
+          <h3 class="text-xl font-semibold text-white mb-3"><a href="https://github.com/seongjae9902/Phishing_Email_Detection" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-4">Phishing Email Detection System</a></h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-300 flex-1"><li>An agentic phishing-detection pipeline that processes thousands of emails from the CEAS_08 dataset using NLTK and TF-IDF.</li><li>Combines rule-based and ML approaches in a hybrid detection system.</li><li>Automated workflow for repeatable detection outputs, with confusion matrices and performance metrics.</li></ul>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">Python</span><span class="chip">NLTK</span><span class="chip">TF-IDF</span><span class="chip">Machine learning</span></div>
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-700/70"><a href="https://github.com/seongjae9902/Phishing_Email_Detection" target="_blank" rel="noopener" class="ev"><span class="ev-i">&lt;/&gt;</span>Code on GitHub</a><a href="assets/docs/phishing-email-detection-slides.pdf" target="_blank" rel="noopener" class="ev"><span class="ev-i">&#128196;</span>Slides (PDF)</a><a href="#" data-open-gallery class="ev">&#128247; 1 photo</a></div>
+        </div>
+      </article>
+
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="50" data-gallery>
+        <img src="assets/images/events/web-application-attack-slide.jpg" alt="Title slide of the Web Application Attack project" loading="lazy" data-lightbox class="w-full h-56 object-cover cursor-zoom-in"><div class="grid grid-cols-3 gap-2 px-6 pt-4"><img src="assets/images/events/web-application-attack-results.jpg" alt="Results: the attacks succeeding in vulnerable mode" loading="lazy" data-lightbox class="w-full h-20 object-cover rounded cursor-zoom-in border border-gray-700 hover:border-purple-500"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">MS Cybersecurity, CCNY &middot; Network Security, Spring 2025</div>
+          <h3 class="text-xl font-semibold text-white mb-3"><a href="assets/docs/web-application-attack-slides.pdf" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-4">Vulnerable Web App: Attack &amp; Defend</a></h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-300 flex-1"><li>One Django app with a "vulnerable mode" toggle, built with Tarannum Choudhary and Tejveer Waraich.</li><li>Demonstrates six real-world attacks: SQL injection, cross-site scripting, directory traversal, parameter tampering, cookie poisoning and web crawling with Burp Suite.</li><li>Switching vulnerable mode off shows the secure version: parameterized queries, output escaping, whitelisted file access and server-side role checks.</li></ul>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">Django</span><span class="chip">Burp Suite</span><span class="chip">SQL injection</span><span class="chip">XSS</span><span class="chip">OWASP</span></div>
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-700/70"><a href="assets/docs/web-application-attack-slides.pdf" target="_blank" rel="noopener" class="ev"><span class="ev-i">&#128196;</span>Project slides (PDF)</a><a href="#" data-open-gallery class="ev">&#128247; 2 photos</a></div>
+        </div>
+      </article>
+
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-gallery>
+        
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">MS Cybersecurity, CCNY &middot; Penetration Testing &amp; Ethical Hacking, May 2025</div>
+          <h3 class="text-xl font-semibold text-white mb-3">Bluetooth Exploitation via AI-Generated Voice</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-300 flex-1"><li>A social-engineering attack that pairs AI voice cloning with Bluetooth-connected smart speakers and assistants to issue commands in a target's voice.</li><li>Written up as an IEEE-format paper with Jay Jariwala and Muhaiminul Islam, for Prof. Ihab Darwish.</li></ul>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">Social engineering</span><span class="chip">Bluetooth</span><span class="chip">AI voice</span><span class="chip">Smart home security</span></div>
+          <p class="mt-5 pt-4 border-t border-gray-700/70 text-xs text-gray-500">Code and screenshots coming soon.</p>
+        </div>
+      </article>
+
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-gallery>
+        
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">MS Cybersecurity, CCNY</div>
+          <h3 class="text-xl font-semibold text-white mb-3">Secure ATM System</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-300 flex-1"><li>Engineered a secure system in Rust aligned with the OWASP Top 10 and CWE frameworks.</li><li>Performed adversarial testing, including backdoor injection analysis.</li><li>Identified and mitigated vulnerabilities through secure design and code-level protections.</li></ul>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">Rust</span><span class="chip">OWASP Top 10</span><span class="chip">CWE</span><span class="chip">Adversarial testing</span></div>
+          <p class="mt-5 pt-4 border-t border-gray-700/70 text-xs text-gray-500">Code and screenshots coming soon.</p>
+        </div>
+      </article>
+
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="50" data-gallery>
+        
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">MS Cybersecurity, CCNY</div>
+          <h3 class="text-xl font-semibold text-white mb-3">Enterprise Network Design &amp; Traffic Analysis</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-300 flex-1"><li>Designed a 7-router enterprise network in Cisco Packet Tracer, simulating real-world routing.</li><li>Analyzed RIP v2 and OSPF for convergence, efficiency, and fault tolerance.</li><li>Ran traffic analysis and troubleshooting with CLI tools, fixing misconfigurations and improving performance.</li></ul>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">Cisco Packet Tracer</span><span class="chip">OSPF</span><span class="chip">RIP v2</span><span class="chip">Traffic analysis</span></div>
+          <p class="mt-5 pt-4 border-t border-gray-700/70 text-xs text-gray-500">Code and screenshots coming soon.</p>
+        </div>
+      </article>
+
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-gallery>
+        <img src="assets/images/events/homelab-ftp-backdoor.jpg" alt="Exploiting an FTP backdoor on Metasploitable in my home lab" loading="lazy" data-lightbox class="w-full h-56 object-cover cursor-zoom-in"><div class="grid grid-cols-3 gap-2 px-6 pt-4"><img src="assets/images/events/homelab-ssh-pentest.jpg" alt="SSH password testing with Hydra and Medusa" loading="lazy" data-lightbox class="w-full h-20 object-cover rounded cursor-zoom-in border border-gray-700 hover:border-purple-500"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">Personal &middot; 2025</div>
+          <h3 class="text-xl font-semibold text-white mb-3"><a href="#" data-open-gallery class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-4">Home Pentesting Lab</a></h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-gray-300 flex-1"><li>Built a home virtual lab running Kali Linux, Windows and Metasploitable side by side on my Mac.</li><li>Exploited an FTP backdoor on Metasploitable to retrieve a file from a vulnerable server, all in a contained lab.</li><li>Tested weak SSH passwords with Hydra and Medusa, and learned why smart wordlists beat brute force.</li></ul>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">Kali Linux</span><span class="chip">Metasploit</span><span class="chip">Hydra</span><span class="chip">Medusa</span><span class="chip">Metasploitable</span></div>
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-700/70"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7362740600489574402/" target="_blank" rel="noopener" class="ev"><span class="ev-i">in</span>FTP backdoor post</a><a href="https://www.linkedin.com/feed/update/urn:li:activity:7363223257212207105/" target="_blank" rel="noopener" class="ev"><span class="ev-i">in</span>SSH testing post</a><a href="#" data-open-gallery class="ev">&#128247; 2 photos</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <h2 class="text-2xl font-semibold text-purple-400 mb-6" data-aos="fade-up">Competitions</h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-16">
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-gallery>
+        <img src="assets/images/events/csaw-hack3d-certificate.jpg" alt="CSAW Hack3D 2025 finalist certificate" loading="lazy" data-lightbox class="w-full h-56 object-cover cursor-zoom-in"><div class="grid grid-cols-3 gap-2 px-6 pt-4"><img src="assets/images/events/csaw-nyu-tandon.jpg" alt="NYU Tandon School of Engineering, home of CSAW" loading="lazy" data-lightbox class="w-full h-20 object-cover rounded cursor-zoom-in border border-gray-700 hover:border-purple-500"><img src="assets/images/events/csaw-hack3d-whiteboard.jpg" alt="Planning our Hack3D attack on the whiteboard" loading="lazy" data-lightbox class="w-full h-20 object-cover rounded cursor-zoom-in border border-gray-700 hover:border-purple-500"><img src="assets/images/events/csaw-hack3d-lab.jpg" alt="The Hack3D lab at NYU Tandon" loading="lazy" data-lightbox class="w-full h-20 object-cover rounded cursor-zoom-in border border-gray-700 hover:border-purple-500"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">Nov 2025 &middot; CSAW at NYU Tandon</div>
+          <h3 class="text-xl font-semibold text-white mb-3"><a href="#" data-open-gallery class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-4">Hack3D Finalist, CSAW 2025</a></h3>
+          <p class="text-gray-300 flex-1">Finalist in the 10th Hack3D Manufacturing Cybersecurity Challenge during Cybersecurity Awareness Week at NYU Tandon: securing additive manufacturing pipelines and cyber-physical systems, beyond software-only threat models.</p>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">Cyber-physical systems</span><span class="chip">Additive manufacturing</span><span class="chip">CTF</span></div>
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-700/70"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7407866796969574400/" target="_blank" rel="noopener" class="ev"><span class="ev-i">in</span>LinkedIn post</a><a href="#" data-open-gallery class="ev">&#128247; 4 photos</a></div>
+        </div>
+      </article>
+
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="50" data-gallery>
+        <img src="assets/images/events/ncae-2026-award.jpg" alt="NCAE Cyber Games 2026 Most Valuable Teammate certificate" loading="lazy" data-lightbox class="w-full h-56 object-cover cursor-zoom-in"><div class="grid grid-cols-3 gap-2 px-6 pt-4"><img src="assets/images/events/ncae-2026-swag.jpg" alt="NCAE Cyber Games blue team gear and award" loading="lazy" data-lightbox class="w-full h-20 object-cover rounded cursor-zoom-in border border-gray-700 hover:border-purple-500"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">Apr 2026 &middot; Representing CCNY</div>
+          <h3 class="text-xl font-semibold text-white mb-3"><a href="#" data-open-gallery class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-4">Most Valuable Teammate, NCAE Cyber Games 2026</a></h3>
+          <p class="text-gray-300 flex-1">Nominated by my teammates for the Most Valuable Teammate award after an intense day of CTFs and solving hard problems under pressure, with guidance from Prof. Tarek Saadawi.</p>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">CTF</span><span class="chip">Blue team</span><span class="chip">Teamwork</span></div>
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-700/70"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7469195364827447296/" target="_blank" rel="noopener" class="ev"><span class="ev-i">in</span>LinkedIn post</a><a href="#" data-open-gallery class="ev">&#128247; 2 photos</a></div>
+        </div>
+      </article>
+
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="100" data-gallery>
+        <img src="assets/images/events/cyber-career-challenge-2025.jpg" alt="Cyber Career Challenge 2025 certificate of achievement" loading="lazy" data-lightbox class="w-full h-56 object-cover cursor-zoom-in">
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">2025 &middot; NCyTE &amp; CSU San Bernardino</div>
+          <h3 class="text-xl font-semibold text-white mb-3"><a href="#" data-open-gallery class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-4">Cyber Career Challenge 2025</a></h3>
+          <p class="text-gray-300 flex-1">Designed, secured and managed a small business network as a team: network configuration and firewall setup, web and database management, security planning and penetration-testing defense.</p>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">Network security</span><span class="chip">Firewalls</span><span class="chip">Team project</span></div>
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-700/70"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7372131159826169857/" target="_blank" rel="noopener" class="ev"><span class="ev-i">in</span>LinkedIn post</a><a href="#" data-open-gallery class="ev">&#128247; 1 photo</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <h2 class="text-2xl font-semibold text-purple-400 mb-6" data-aos="fade-up">Builds, hackathons &amp; web</h2>
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-gallery>
+        <img src="assets/images/events/robot-car-laptop.jpg" alt="The smart robot car next to its control code" loading="lazy" data-lightbox class="w-full h-56 object-cover cursor-zoom-in"><div class="grid grid-cols-3 gap-2 px-6 pt-4"><img src="assets/images/events/robot-car-closeup.jpg" alt="Close-up of the smart robot car" loading="lazy" data-lightbox class="w-full h-20 object-cover rounded cursor-zoom-in border border-gray-700 hover:border-purple-500"><img src="assets/images/events/robot-car-build.jpg" alt="The robot car mid-build" loading="lazy" data-lightbox class="w-full h-20 object-cover rounded cursor-zoom-in border border-gray-700 hover:border-purple-500"><img src="assets/images/events/robot-car-track.jpg" alt="The line-following test track" loading="lazy" data-lightbox class="w-full h-20 object-cover rounded cursor-zoom-in border border-gray-700 hover:border-purple-500"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">Apr 2024 &middot; DCET Hyderabad &amp; NDLI Club, IIT Kharagpur</div>
+          <h3 class="text-xl font-semibold text-white mb-3"><a href="#" data-open-gallery class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-4">DECATHON 2024 &ndash; Smart Robot Car</a></h3>
+          <p class="text-gray-300 flex-1">My final-year major project, "Smart Robot with Advanced Line Following Capabilities and Integrated Sensors", built with Abdul Jabbar and Mohd Shahed Ali Khan: a line-following robot with IoT integration and obstacle detection, using Arduino, Python and OpenCV.</p>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">Arduino</span><span class="chip">Python</span><span class="chip">OpenCV</span><span class="chip">IoT</span></div>
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-700/70"><a href="assets/docs/smart-robot-car-slides.pdf" target="_blank" rel="noopener" class="ev"><span class="ev-i">&#128196;</span>Project slides (PDF)</a><a href="https://www.linkedin.com/feed/update/urn:li:activity:7274151347329900544/" target="_blank" rel="noopener" class="ev"><span class="ev-i">in</span>Build post</a><a href="#" data-open-gallery class="ev">&#128247; 4 photos</a></div>
+        </div>
+      </article>
+
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="50" data-gallery>
+        <img src="assets/images/events/club-flyer-2026.jpg" alt="CCNY Cybersecurity Club flyer" loading="lazy" data-lightbox class="w-full h-56 object-cover cursor-zoom-in">
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">2026 &middot; Live on this site</div>
+          <h3 class="text-xl font-semibold text-white mb-3"><a href="club.html" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-4">CCNY Cybersecurity Club Website</a></h3>
+          <p class="text-gray-300 flex-1">The club's home page, with a member wall that updates itself from verified signups, an NFC tag programming guide, and a Discord link that never goes stale.</p>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">HTML</span><span class="chip">Tailwind CSS</span><span class="chip">JavaScript</span></div>
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-700/70"><a href="club.html" class="ev"><span class="ev-i">&#8599;</span>Visit the club page</a><a href="#" data-open-gallery class="ev">&#128247; 1 photo</a></div>
+        </div>
+      </article>
+
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="100" data-gallery>
+        <img src="assets/images/events/fashion-ecommerce-website-slide.jpg" alt="Title slide of the fashion e-commerce project presentation" loading="lazy" data-lightbox class="w-full h-56 object-cover cursor-zoom-in">
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">Jun 2022 &middot; Mini project, DCET</div>
+          <h3 class="text-xl font-semibold text-white mb-3"><a href="assets/docs/fashion-ecommerce-website-slides.pdf" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-4">Fashion E-commerce Website</a></h3>
+          <p class="text-gray-300 flex-1">A responsive e-commerce site with login, product pages and a payment gateway that cut cart abandonment by 15%.</p>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Payments</span></div>
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-700/70"><a href="assets/docs/fashion-ecommerce-website-slides.pdf" target="_blank" rel="noopener" class="ev"><span class="ev-i">&#128196;</span>Project slides (PDF)</a><a href="#" data-open-gallery class="ev">&#128247; 1 photo</a></div>
+        </div>
+      </article>
+
+      <article class="card rounded-xl overflow-hidden flex flex-col" data-aos="fade-up" data-gallery>
+        
+        <div class="p-6 flex flex-col flex-1">
+          <div class="kind mb-2">Apr 2023</div>
+          <h3 class="text-xl font-semibold text-white mb-3">Netflix Clone</h3>
+          <p class="text-gray-300 flex-1">A secure streaming platform with authentication and a recommendation engine.</p>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="chip">Web development</span><span class="chip">Authentication</span><span class="chip">Recommendations</span></div>
+          <p class="mt-5 pt-4 border-t border-gray-700/70 text-xs text-gray-500">Code and screenshots coming soon.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="mt-16 text-center" data-aos="fade-up">
+      <p class="text-gray-400 mb-5">More code lives on GitHub.</p>
+      <a href="https://github.com/Imad-ali-syed" target="_blank" rel="noopener" class="inline-block bg-purple-600 hover:bg-purple-500 text-white font-semibold px-7 py-3 rounded-lg transition-colors">View my GitHub</a>
     </div>
   </section>
 
+  <footer class="bg-gray-900 border-t border-gray-800 py-8 text-center text-gray-400">
+    <div class="mb-4">
+      <a href="https://github.com/Imad-ali-syed" target="_blank" rel="noopener" class="mx-3 hover:text-purple-400">GitHub</a>
+      <a href="https://linkedin.com/in/imadalisyed" target="_blank" rel="noopener" class="mx-3 hover:text-purple-400">LinkedIn</a>
+      <a href="mailto:imadalisyed15@gmail.com" class="mx-3 hover:text-purple-400">Email</a>
+    </div>
+    <p class="text-sm">&copy; <span id="year"></span> Imad Ali Syed. All rights reserved.</p>
+  </footer>
+
   <script>
     AOS.init({ duration: 800, once: true });
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script src="assets/js/lightbox.js" defer></script>
 </body>
 </html>

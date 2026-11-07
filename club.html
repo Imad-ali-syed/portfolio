@@ -31,18 +31,42 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
 </head>
 <body class="pt-24 bg-gray-900 text-gray-300">
 
-<!-- Navbar -->
-<header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50 shadow-lg">
-  <a href="index.html"><div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div></a>
-  <nav class="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6 mt-4 md:mt-0">
-    <a href="index.html" class="hover:text-purple-400">Home</a>
-    <a href="about.html" class="hover:text-purple-400">About</a>
-    <a href="club.html" class="text-purple-400">Club</a>
-    <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a>
-    <a href="skills.html" class="hover:text-purple-400">Skills</a>
-    <a href="contact.html" class="hover:text-purple-400">Contact</a>
+<!-- Navbar (same on every page; the button shows the menu on phones) -->
+<header class="bg-gray-900 text-gray-200 fixed top-0 left-0 w-full z-50 shadow-lg">
+  <div class="px-6 py-5 flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-bold text-purple-500">Imad Ali Syed</a>
+    <nav class="hidden md:flex gap-6" aria-label="Main">
+      <a href="index.html" class=" hover:text-purple-400">Home</a>
+      <a href="about.html" class=" hover:text-purple-400">About</a>
+      <a href="club.html" class=" text-purple-400" aria-current="page">Club</a>
+      <a href="portfolio.html" class=" hover:text-purple-400">Portfolio</a>
+      <a href="skills.html" class=" hover:text-purple-400">Skills</a>
+      <a href="contact.html" class=" hover:text-purple-400">Contact</a>
+    </nav>
+    <button id="navToggle" type="button" class="md:hidden p-2 -mr-2 text-gray-300 hover:text-purple-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav id="mobileNav" class="hidden md:hidden border-t border-gray-800 px-6 pb-4" aria-label="Main">
+      <a href="index.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Home</a>
+      <a href="about.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">About</a>
+      <a href="club.html" class="block py-3 border-b border-gray-800 text-purple-400" aria-current="page">Club</a>
+      <a href="portfolio.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Portfolio</a>
+      <a href="skills.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Skills</a>
+      <a href="contact.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Contact</a>
   </nav>
 </header>
+<script>
+(function () {
+  var b = document.getElementById('navToggle'), m = document.getElementById('mobileNav');
+  if (!b || !m) { return; }
+  b.addEventListener('click', function () {
+    var open = !m.classList.toggle('hidden');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+})();
+</script>
 
 <!-- Hero -->
 <section class="relative overflow-hidden px-6 py-20 md:py-28">
@@ -162,6 +186,34 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
       <a href="https://forms.gle/1SAmVhKgjSnBZCrbA" target="_blank" rel="noopener"
          class="bg-purple-600 hover:bg-purple-500 text-white font-semibold px-7 py-3 rounded-lg transition">Sign up</a>
       <a href="nfc.html" class="border border-gray-600 hover:border-purple-400 hover:text-purple-300 px-7 py-3 rounded-lg transition">Got an NFC tag from us? &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- Events -->
+<section id="events" class="max-w-5xl mx-auto px-6 pb-16">
+  <h2 class="text-3xl font-semibold mb-2 text-purple-500" data-aos="fade-up">What we've done so far</h2>
+  <p class="text-gray-400 mb-8 max-w-3xl" data-aos="fade-up">Our first semester as a club. Click a photo to see it full size.</p>
+
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="card rounded-xl p-6" data-aos="fade-up">
+      <div class="text-xs tracking-widest text-cyan-400 mb-2">OCT 2026 &middot; FIRST SEMINAR</div>
+      <h3 class="text-xl font-semibold text-gray-100 mb-2">AI and the future of cybersecurity careers</h3>
+      <p class="text-gray-400 leading-relaxed mb-4">Dr. Joseph Soryal, Principal Member of Technical Staff at AT&amp;T Labs, on where security careers are heading as AI takes off. Opened by our faculty advisor, Prof. Tarek Saadawi. Members get the full recording and slides.</p>
+      <div data-gallery>
+      <figure><img src="assets/images/events/club-first-seminar-2026.jpg" alt="Prof. Tarek Saadawi opening the club's first seminar" loading="lazy" data-lightbox class="w-full h-56 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Prof. Tarek Saadawi opening the club's first seminar</figcaption></figure>
+      </div>
+    </div>
+    <div class="card rounded-xl p-6" data-aos="fade-up" data-aos-delay="50">
+      <div class="text-xs tracking-widest text-cyan-400 mb-2">FALL 2026 &middot; FIRST EVENT</div>
+      <h3 class="text-xl font-semibold text-gray-100 mb-2">Club Fair on the NAC Quad</h3>
+      <p class="text-gray-400 leading-relaxed mb-4">250 flyers, a box of free NFC tags, two hours on the Quad and a signup line that didn't really stop. Most people said the same thing: "I'm interested in security, but I have no idea where to start." That's who this club is for.</p>
+      <div class="grid grid-cols-2 gap-3" data-gallery>
+      <figure><img src="assets/images/events/club-fair-2026-table.jpg" alt="Our officers at the Club Fair table" loading="lazy" data-lightbox class="w-full h-36 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Our officers at the Club Fair table</figcaption></figure>
+      <figure><img src="assets/images/events/club-fair-2026-quad.jpg" alt="Club Fair day on the NAC Quad" loading="lazy" data-lightbox class="w-full h-36 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Club Fair day on the NAC Quad</figcaption></figure>
+      <figure><img src="assets/images/events/club-fair-2026-crowd.jpg" alt="Students signing up at our table" loading="lazy" data-lightbox class="w-full h-36 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Students signing up at our table</figcaption></figure>
+      <figure><img src="assets/images/events/club-flyer-2026.jpg" alt="The flyer we handed out, with free NFC tags" loading="lazy" data-lightbox class="w-full h-36 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">The flyer we handed out, with free NFC tags</figcaption></figure>
+      </div>
     </div>
   </div>
 </section>
@@ -450,5 +502,6 @@ document.getElementById("year").textContent = new Date().getFullYear();
     .catch(function () { err.classList.remove('hidden'); });
 })();
 </script>
+<script src="assets/js/lightbox.js" defer></script>
 </body>
 </html>

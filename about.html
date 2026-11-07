@@ -4,42 +4,160 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Me - Imad Ali Syed</title>
+  <meta name="description" content="About Imad Ali Syed: cybersecurity graduate student at CCNY, adjunct lecturer at CUNY, NYSTEC IgniteU NY Fellow and President of the CCNY Cybersecurity Club.">
+  <link rel="icon" type="image/png" href="assets/images/favicon.jpeg" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="icon" type="image/png" href="assets/images/favicon.jpeg" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    .card { background:#1f2937; border:1px solid #374151; }
+  </style>
 </head>
 <body class="pt-24 bg-gray-900 text-gray-300">
 
-  <!-- Navbar -->
-  <header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-    <a href="/index.html"><div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div></a>
-    <nav class="space-x-6">
+<!-- Navbar (same on every page; the button shows the menu on phones) -->
+<header class="bg-gray-900 text-gray-200 fixed top-0 left-0 w-full z-50 shadow-lg">
+  <div class="px-6 py-5 flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-bold text-purple-500">Imad Ali Syed</a>
+    <nav class="hidden md:flex gap-6" aria-label="Main">
       <a href="index.html" class="hover:text-purple-400">Home</a>
-      <a href="about.html" class="hover:text-purple-400">About</a>
-      <!-- <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a> -->
+      <a href="about.html" class="text-purple-400" aria-current="page">About</a>
+      <a href="club.html" class="hover:text-purple-400">Club</a>
+      <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a>
       <a href="skills.html" class="hover:text-purple-400">Skills</a>
-      <!-- <a href="blog.html" class="hover:text-purple-400">Blog</a> -->
       <a href="contact.html" class="hover:text-purple-400">Contact</a>
     </nav>
-  </header>
-  
-  <!-- Copy header snippet here -->
+    <button id="navToggle" type="button" class="md:hidden p-2 -mr-2 text-gray-300 hover:text-purple-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav id="mobileNav" class="hidden md:hidden border-t border-gray-800 px-6 pb-4" aria-label="Main">
+      <a href="index.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Home</a>
+      <a href="about.html" class="block py-3 border-b border-gray-800 text-purple-400" aria-current="page">About</a>
+      <a href="club.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Club</a>
+      <a href="portfolio.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Portfolio</a>
+      <a href="skills.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Skills</a>
+      <a href="contact.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Contact</a>
+  </nav>
+</header>
+<script>
+(function () {
+  var b = document.getElementById('navToggle'), m = document.getElementById('mobileNav');
+  if (!b || !m) { return; }
+  b.addEventListener('click', function () {
+    var open = !m.classList.toggle('hidden');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+})();
+</script>
 
-  <section class="max-w-5xl mx-auto px-6 py-16" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold mb-6 text-purple-500">About Me</h2>
-    <p class="leading-relaxed text-lg mb-6">I’m a full-stack developer and cybersecurity enthusiast with experience in web development, security research, and software engineering. I enjoy building secure and intuitive applications that solve real-world problems.</p>
-
-    <h3 class="text-2xl font-semibold mb-4 text-purple-400">My Journey</h3>
-    <ul class="list-disc pl-6 space-y-2">
-      <li>Started coding at 15, exploring web and security</li>
-      <li>Worked on multiple web projects for clients and personal growth</li>
-      <li>Specialized in modern web technologies: HTML, CSS, JS, Tailwind, React</li>
-    </ul>
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-5 gap-10 items-center" data-aos="fade-up">
+      <div class="md:col-span-3">
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 text-purple-500">About Me</h1>
+        <p class="leading-relaxed text-lg mb-4">I'm <span class="text-purple-400 font-semibold">Imad Ali Syed</span>, a cybersecurity graduate student at the City College of New York. I focus on security operations, threat detection and network traffic analysis, and I've built AI-driven intrusion detection and phishing detection systems in Python.</p>
+        <p class="leading-relaxed text-lg mb-4">I also teach. I'm an adjunct lecturer at LaGuardia Community College and at City College, where I get to turn attack simulations and packet captures into hands-on labs for students.</p>
+        <p class="leading-relaxed text-lg">Outside class I lead the CCNY Cybersecurity Club, compete in cyber competitions, and keep building web tools, including this site.</p>
+      </div>
+      <div class="md:col-span-2">
+        <img src="imad.jpg" alt="Imad Ali Syed on a street in New York City" class="rounded-2xl shadow-lg object-cover w-full aspect-square">
+      </div>
+    </div>
   </section>
+
+  <section class="max-w-5xl mx-auto px-6 pb-16">
+    <h2 class="text-2xl font-semibold mb-6 text-purple-400" data-aos="fade-up">What I'm doing now</h2>
+    <div class="grid gap-4 sm:grid-cols-2" data-aos="fade-up">
+      <a href="details/ms-cybersecurity-ccny.html" class="card rounded-xl p-5 hover:border-purple-500 transition-colors">
+        <div class="text-xs tracking-widest text-cyan-400 mb-1">STUDYING</div>
+        <div class="text-white font-semibold">MS in Cybersecurity, City College of New York</div>
+        <div class="text-sm text-gray-400 mt-1">Jan 2025 &ndash; Dec 2026 (expected)</div>
+      </a>
+      <a href="details/lagcc-adjunct-lecturer.html" class="card rounded-xl p-5 hover:border-purple-500 transition-colors">
+        <div class="text-xs tracking-widest text-cyan-400 mb-1">TEACHING</div>
+        <div class="text-white font-semibold">Adjunct Lecturer, LaGuardia Community College</div>
+        <div class="text-sm text-gray-400 mt-1">MAC293, MAC246 and MAC247 &middot; since Sep 2025</div>
+      </a>
+      <a href="details/ccny-adjunct-lecturer.html" class="card rounded-xl p-5 hover:border-purple-500 transition-colors">
+        <div class="text-xs tracking-widest text-cyan-400 mb-1">TEACHING</div>
+        <div class="text-white font-semibold">Adjunct Lecturer, City College of New York</div>
+        <div class="text-sm text-gray-400 mt-1">ENGR 10200 &middot; since Aug 2026</div>
+      </a>
+      <a href="details/nystec-cybersecurity-fellow.html" class="card rounded-xl p-5 hover:border-purple-500 transition-colors">
+        <div class="text-xs tracking-widest text-cyan-400 mb-1">WORKING</div>
+        <div class="text-white font-semibold">Cybersecurity Fellow, NYSTEC</div>
+        <div class="text-sm text-gray-400 mt-1">IgniteU NY Fellowship &middot; since Aug 2026</div>
+      </a>
+      <a href="club.html" class="card rounded-xl p-5 hover:border-purple-500 transition-colors sm:col-span-2">
+        <div class="text-xs tracking-widest text-cyan-400 mb-1">LEADING</div>
+        <div class="text-white font-semibold">President, CCNY Cybersecurity Club</div>
+        <div class="text-sm text-gray-400 mt-1">Workshops, CTF practice, hackathons and speaker events &middot; since Aug 2026</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-6 pb-16" data-aos="fade-up">
+    <h2 class="text-2xl font-semibold mb-6 text-purple-400">How I got here</h2>
+    <ol class="relative border-l-2 border-purple-500/60 ml-2 space-y-8">
+      <li class="pl-6">
+        <div class="text-sm text-gray-500">Until 2024</div>
+        <div class="text-white font-semibold">Bachelor of Engineering in Information Technology, Osmania University, Hyderabad</div>
+        <p class="text-gray-400 mt-1">Web development competitions at DECCAN Tech Fest, a machine learning internship at Datapoint Info Solutions in 2023, and an autonomous robot car for DECATHON 2024 at IIT Kharagpur.</p>
+      </li>
+      <li class="pl-6">
+        <div class="text-sm text-gray-500">2025</div>
+        <div class="text-white font-semibold">New York and a master's in cybersecurity</div>
+        <p class="text-gray-400 mt-1">Started my MS at City College, built secure web pages for the Cybersecurity Department, competed in the Cyber Career Challenge, made the CSAW Hack3D finals at NYU Tandon, and started teaching at LaGuardia.</p>
+      </li>
+      <li class="pl-6">
+        <div class="text-sm text-gray-500">2026</div>
+        <div class="text-white font-semibold">Teaching, fellowship and the club</div>
+        <p class="text-gray-400 mt-1">Most Valuable Teammate at the NCAE Cyber Games, then a fellowship at NYSTEC, a second teaching role at City College, and founding the CCNY Cybersecurity Club as its president.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-6 pb-16" data-aos="fade-up">
+    <h2 class="text-2xl font-semibold mb-2 text-purple-400">Out and about</h2>
+    <p class="text-gray-400 mb-6">Competitions, classrooms, hackathons and talks. Click a photo to see it full size.</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3" data-gallery>
+      <figure><img src="assets/images/events/pitchfest-team.jpg" alt="CUNY PitchFest 2026 with my capstone team" loading="lazy" data-lightbox class="w-full h-40 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">CUNY PitchFest 2026 with my capstone team</figcaption></figure>
+      <figure><img src="assets/images/events/ncae-2026-swag.jpg" alt="Most Valuable Teammate at the NCAE Cyber Games 2026" loading="lazy" data-lightbox class="w-full h-40 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Most Valuable Teammate at the NCAE Cyber Games 2026</figcaption></figure>
+      <figure><img src="assets/images/events/csaw-nyu-tandon.jpg" alt="Hack3D finalist at CSAW 2025, NYU Tandon" loading="lazy" data-lightbox class="w-full h-40 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Hack3D finalist at CSAW 2025, NYU Tandon</figcaption></figure>
+      <figure><img src="assets/images/events/lagcc-class-1.jpg" alt="With my lab cohort at LaGuardia Community College" loading="lazy" data-lightbox class="w-full h-40 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">With my lab cohort at LaGuardia Community College</figcaption></figure>
+      <figure><img src="assets/images/events/club-fair-2026-table.jpg" alt="The CCNY Cybersecurity Club's first Club Fair" loading="lazy" data-lightbox class="w-full h-40 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">The CCNY Cybersecurity Club's first Club Fair</figcaption></figure>
+      <figure><img src="assets/images/events/regodit-hackathon-team.jpg" alt="AI x Finance Hackathon, NYC" loading="lazy" data-lightbox class="w-full h-40 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">AI x Finance Hackathon, NYC</figcaption></figure>
+      <figure><img src="assets/images/events/columbia-ai-session.jpg" alt="An AI ethics session at Columbia University" loading="lazy" data-lightbox class="w-full h-40 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">An AI ethics session at Columbia University</figcaption></figure>
+      <figure><img src="assets/images/events/alpfa-ccny-mixer.jpg" alt="ALPFA CCNY professional mixer" loading="lazy" data-lightbox class="w-full h-40 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">ALPFA CCNY professional mixer</figcaption></figure>
+      <figure><img src="assets/images/events/nystec-office.jpg" alt="First day as an IgniteU NY Fellow at NYSTEC" loading="lazy" data-lightbox class="w-full h-40 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">First day as an IgniteU NY Fellow at NYSTEC</figcaption></figure>
+      <figure><img src="assets/images/events/iot-workshop-1.jpg" alt="Coordinating an IoT workshop at DCET, Hyderabad" loading="lazy" data-lightbox class="w-full h-40 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Coordinating an IoT workshop at DCET, Hyderabad</figcaption></figure>
+      <figure><img src="assets/images/events/nidhi-prayas-osmania.jpg" alt="Nidhi Prayas innovators program, Osmania University" loading="lazy" data-lightbox class="w-full h-40 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Nidhi Prayas innovators program, Osmania University</figcaption></figure>
+      <figure><img src="assets/images/events/datapoint-internship.jpg" alt="Finishing my ML internship at Datapoint, 2023" loading="lazy" data-lightbox class="w-full h-40 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Finishing my ML internship at Datapoint, 2023</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-6 pb-20" data-aos="fade-up">
+    <div class="flex flex-wrap gap-3">
+      <a href="assets/resume.pdf" download class="bg-purple-600 hover:bg-purple-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors">Download my resume</a>
+      <a href="portfolio.html" class="border border-gray-600 hover:border-purple-400 hover:text-purple-300 px-6 py-3 rounded-lg transition-colors">See my projects</a>
+      <a href="contact.html" class="border border-gray-600 hover:border-purple-400 hover:text-purple-300 px-6 py-3 rounded-lg transition-colors">Get in touch</a>
+    </div>
+  </section>
+
+  <footer class="bg-gray-900 border-t border-gray-800 py-8 text-center text-gray-400">
+    <div class="mb-4">
+      <a href="https://github.com/Imad-ali-syed" target="_blank" rel="noopener" class="mx-3 hover:text-purple-400">GitHub</a>
+      <a href="https://linkedin.com/in/imadalisyed" target="_blank" rel="noopener" class="mx-3 hover:text-purple-400">LinkedIn</a>
+      <a href="mailto:imadalisyed15@gmail.com" class="mx-3 hover:text-purple-400">Email</a>
+    </div>
+    <p class="text-sm">&copy; <span id="year"></span> Imad Ali Syed. All rights reserved.</p>
+  </footer>
 
   <script>
     AOS.init({ duration: 800, once: true });
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script src="assets/js/lightbox.js" defer></script>
 </body>
 </html>

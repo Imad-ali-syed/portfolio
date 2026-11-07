@@ -32,7 +32,7 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
   border: 3px solid #fff;
   border-radius:50%;
   box-shadow: 0 0 10px #a855f7, 0 0 20px rgba(168,85,247,0.5);
-  z-index:9999;
+  z-index:40; /* below the fixed navbar (z-50) so it never covers the menu */
   pointer-events:auto;
   transform: translate(-50%,-50%);
   transition: transform 0.1s, box-shadow 0.2s;
@@ -76,7 +76,7 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
   pointer-events:none;
   opacity:0.6;
   filter: blur(4px);
-  z-index:9998;
+  z-index:39;
 }
 
 /* Freak out */
@@ -86,20 +86,42 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
 </head>
 <body>
 
-<!-- Navbar -->
-<header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50 shadow-lg">
-  <a href="#"><div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div></a>
-  <nav class="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6 mt-4 md:mt-0">
-    <a href="index.html" class="hover:text-purple-400">Home</a>
-    <a href="about.html" class="hover:text-purple-400">About</a>
-    <a href="club.html" class="hover:text-purple-400">Club</a>
-    <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a> 
-    <a href="skills.html" class="hover:text-purple-400">Skills</a>
-  <!--  <a href="blog.html" class="hover:text-purple-400">Blog</a> --> 
-    <a href="contact.html" class="hover:text-purple-400">Contact</a>
+<!-- Navbar (same on every page; the button shows the menu on phones) -->
+<header class="bg-gray-900 text-gray-200 fixed top-0 left-0 w-full z-50 shadow-lg">
+  <div class="px-6 py-5 flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-bold text-purple-500">Imad Ali Syed</a>
+    <nav class="hidden md:flex gap-6" aria-label="Main">
+      <a href="index.html" class=" text-purple-400" aria-current="page">Home</a>
+      <a href="about.html" class=" hover:text-purple-400">About</a>
+      <a href="club.html" class=" hover:text-purple-400">Club</a>
+      <a href="portfolio.html" class=" hover:text-purple-400">Portfolio</a>
+      <a href="skills.html" class=" hover:text-purple-400">Skills</a>
+      <a href="contact.html" class=" hover:text-purple-400">Contact</a>
+    </nav>
+    <button id="navToggle" type="button" class="md:hidden p-2 -mr-2 text-gray-300 hover:text-purple-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav id="mobileNav" class="hidden md:hidden border-t border-gray-800 px-6 pb-4" aria-label="Main">
+      <a href="index.html" class="block py-3 border-b border-gray-800 text-purple-400" aria-current="page">Home</a>
+      <a href="about.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">About</a>
+      <a href="club.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Club</a>
+      <a href="portfolio.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Portfolio</a>
+      <a href="skills.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Skills</a>
+      <a href="contact.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Contact</a>
   </nav>
-  
 </header>
+<script>
+(function () {
+  var b = document.getElementById('navToggle'), m = document.getElementById('mobileNav');
+  if (!b || !m) { return; }
+  b.addEventListener('click', function () {
+    var open = !m.classList.toggle('hidden');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+})();
+</script>
 
 <!-- Hero Section -->
 <section class="hero-bg h-screen flex items-center justify-center text-center relative overflow-hidden">
@@ -128,16 +150,16 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
   <div class="w-full md:w-1/2 p-6 flex flex-col justify-center">
     <h2 class="text-3xl font-bold mb-4">About Me</h2>
     <p class="text-lg leading-relaxed text-gray-300">
-      A passionate Cybersecurity Professional and Web Developer with a love for problem-solving and innovation. With a strong foundation in IT and hands-on experience in ethical hacking, I enjoy exploring the intersection of security, technology, and creativity. Whether it’s safeguarding systems, building sleek web applications, or tackling complex challenges, I’m always driven to push boundaries and keep learning. Outside of tech, I’m curious, adaptable, and constantly exploring new ways to grow — because to me, every challenge is just another puzzle waiting to be solved.”
+      A passionate Cybersecurity Professional and Web Developer with a love for problem-solving and innovation. With a strong foundation in IT and hands-on experience in ethical hacking, I enjoy exploring the intersection of security, technology, and creativity. Whether it’s safeguarding systems, building sleek web applications, or tackling complex challenges, I’m always driven to push boundaries and keep learning. Outside of tech, I’m curious, adaptable, and constantly exploring new ways to grow — because to me, every challenge is just another puzzle waiting to be solved.
     </p>
-    <a class="text-gray-500" href="#">Learn more</a>
+    <a class="mt-4 inline-block text-purple-400 hover:text-purple-300 font-semibold" href="about.html">Learn more about me &rarr;</a>
   </div>
 
   <!-- Image Side -->
   <div class="w-full md:w-1/2 p-6">
-    <img src="/assets/images/favicon.jpeg" 
-         alt="About me image" 
-         class="rounded-2xl shadow-lg object-cover w-full h-full">
+    <img src="imad.jpg"
+         alt="Imad Ali Syed on a street in New York City"
+         class="rounded-2xl shadow-lg object-cover w-full aspect-square">
   </div>
 </section>
 
@@ -145,7 +167,7 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
 <!-- Timeline Section -->
 <!-- Timeline Section --> 
 <section id="timeline" class="timeline relative max-w-5xl mx-auto py-16">
-  <div class="absolute left-8 top-0 bottom-0 w-1 bg-purple-400"></div>
+  <div id="timelineLine" class="absolute left-8 top-0 bottom-0 w-1 bg-purple-400"></div>
   <div class="ml-20 space-y-12">
     
     <div data-aos="fade-up">
@@ -168,7 +190,7 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
     </div>
 
     <div data-aos="fade-up">
-      <a href="details/nystec-cybersecurity-intern.html" class="hover:text-purple-300 transition-colors"><h2 class="text-2xl font-bold text-purple-400">Cybersecurity Intern</h2></a>
+      <a href="details/nystec-cybersecurity-fellow.html" class="hover:text-purple-300 transition-colors"><h2 class="text-2xl font-bold text-purple-400">Cybersecurity Fellow</h2></a>
       <p class="text-gray-400 text-sm italic">Aug 2026 – Present</p>
       <p class="text-gray-300">NYSTEC, New York, NY</p>
       <p class="text-gray-400 text-sm mt-2">Supporting cybersecurity and IT consulting engagements for New York State government clients, contributing to risk assessments and technical documentation.</p>
@@ -178,8 +200,8 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
       <a href="details/lagcc-adjunct-lecturer.html" class="hover:text-purple-300 transition-colors"><h2 class="text-2xl font-bold text-purple-400">Adjunct Lecturer</h2></a>
       <p class="text-gray-400 text-sm italic">Sep 2025 – Present</p>
       <p class="text-gray-300">LaGuardia Community College, Long Island City, NY</p>
-      <p class="text-gray-400 text-sm mt-2">Courses taught: <ul class="list-disc list-inside text-gray-400 text-sm mt-2 space-y-1"><li>MAC293 (Computer Repair and Network Maintenance Lab)</li>  <li>MAC247 (Advanced System Security)</li> <li>MAC246 (Advanced Network Security)</li> </ul> 
-      </p>
+      <p class="text-gray-400 text-sm mt-2">Courses taught:</p>
+      <ul class="list-disc list-inside text-gray-400 text-sm mt-2 space-y-1"><li>MAC293 (Computer Repair and Network Maintenance Lab)</li><li>MAC247 (Advanced System Security)</li><li>MAC246 (Advanced Network Security)</li></ul>
     </div>
 
     <div data-aos="fade-up">
@@ -265,6 +287,10 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
   <section id="contact" class="max-w-3xl mx-auto px-6 py-10 text-center">
     <h2 class="text-4xl font-bold text-purple-400 ">Get in Touch</h2>
     <p class="text-gray-300">Let’s connect! I’m open to opportunities in Cybersecurity, Web Development, and related fields.</p>
+    <div class="mt-8 flex flex-wrap gap-3 justify-center">
+      <a href="mailto:imadalisyed15@gmail.com" class="bg-purple-600 hover:bg-purple-500 text-white font-semibold px-7 py-3 rounded-lg transition-colors">Email me</a>
+      <a href="contact.html" class="border border-gray-600 hover:border-purple-400 hover:text-purple-300 px-7 py-3 rounded-lg transition-colors">Send a message</a>
+    </div>
   </section>
 
 <!-- Footer -->
@@ -330,49 +356,51 @@ function eraseRole(){
 
 setTimeout(typeRole,2000); // start roles after name types out
 
-// Spy drone smooth + trail
+// Spy drone + trail. The drone is position:fixed, so every position here is in
+// viewport (screen) coordinates, not page coordinates. While the timeline's line
+// crosses the middle of the screen the drone rides on it; otherwise it hovers
+// somewhere on screen and dodges when you hover or tap it.
 const spy=document.getElementById("spy");
-const timeline=document.querySelector('.timeline');
-const trailContainer=document.createElement('div');
-trailContainer.id='trail-container';
-document.body.appendChild(trailContainer);
+const line=document.getElementById("timelineLine");
+const trailContainer=document.getElementById("trail-container");
 
-let freeX=Math.random()*window.innerWidth*0.8, freeY=window.scrollY+window.innerHeight*0.3;
+let freeX=40+Math.random()*(window.innerWidth*0.8), freeY=window.innerHeight*0.3;
 let currentX=freeX, currentY=freeY;
 const trailParticles=[];
 
 function animateSpy(){
-  const scrollY=window.scrollY;
-  const timelineTop=timeline.offsetTop, timelineHeight=timeline.offsetHeight;
-  let targetX, targetY;
-  if(scrollY+window.innerHeight*0.5>=timelineTop && scrollY<=timelineTop+timelineHeight){
-    let progress=Math.min(1,Math.max(0,(scrollY+window.innerHeight*0.5-timelineTop)/timelineHeight));
-    targetX=timeline.offsetLeft+4; targetY=progress*timelineHeight;
-  } else { targetX=freeX; targetY=freeY; }
+  const vh=window.innerHeight, r=line.getBoundingClientRect();
+  let targetX=freeX, targetY=freeY;
+  if(r.top<vh*0.5 && r.bottom>vh*0.5){ targetX=r.left+r.width/2; targetY=vh*0.5; }
   currentX+=(targetX-currentX)*0.1; currentY+=(targetY-currentY)*0.1;
   spy.style.left=currentX+"px"; spy.style.top=currentY+"px";
 
-  // Trail
   const particle=document.createElement('div');
   particle.className='trail';
-  particle.style.left=currentX+'px';
-  particle.style.top=currentY+'px';
+  particle.style.left=(currentX-10)+'px';
+  particle.style.top=(currentY-10)+'px';
   trailContainer.appendChild(particle);
   trailParticles.push({el:particle, life:20});
-  trailParticles.forEach((p,i)=>{
+  for(let i=trailParticles.length-1;i>=0;i--){
+    const p=trailParticles[i];
     p.life--;
     p.el.style.opacity=p.life/20*0.6;
-    if(p.life<=0){p.el.remove(); trailParticles.splice(i,1);}
-  });
-
+    if(p.life<=0){ p.el.remove(); trailParticles.splice(i,1); }
+  }
   requestAnimationFrame(animateSpy);
 }
 animateSpy();
 
-window.addEventListener("scroll",()=>{freeY=window.scrollY+window.innerHeight*0.3; if(Math.random()<0.05) freeX=Math.random()*window.innerWidth*0.8;});
-window.addEventListener("resize",()=>freeX=Math.min(freeX,window.innerWidth-50));
-spy.addEventListener("mouseenter",()=>{spy.classList.add("freak-out"); freeX=Math.random()*window.innerWidth*0.9; freeY=window.scrollY+Math.random()*window.innerHeight*0.8; setTimeout(()=>spy.classList.remove("freak-out"),1000);});
-spy.addEventListener("click",()=>{spy.classList.add("freak-out"); freeX=Math.random()*window.innerWidth*0.9; freeY=window.scrollY+Math.random()*window.innerHeight*0.8; setTimeout(()=>spy.classList.remove("freak-out"),1000);});
+function dodge(){
+  spy.classList.add("freak-out");
+  freeX=40+Math.random()*(window.innerWidth*0.85);
+  freeY=window.innerHeight*(0.15+Math.random()*0.7);
+  setTimeout(()=>spy.classList.remove("freak-out"),1000);
+}
+window.addEventListener("scroll",()=>{ if(Math.random()<0.05) freeX=40+Math.random()*(window.innerWidth*0.8); });
+window.addEventListener("resize",()=>{ freeX=Math.min(freeX,window.innerWidth-50); freeY=Math.min(freeY,window.innerHeight-50); });
+spy.addEventListener("mouseenter",dodge);
+spy.addEventListener("click",dodge);
 </script>
 
 </body>

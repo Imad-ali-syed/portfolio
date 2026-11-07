@@ -4,56 +4,129 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact - Imad Ali Syed</title>
+  <meta name="description" content="Get in touch with Imad Ali Syed about cybersecurity, teaching, web development or the CCNY Cybersecurity Club.">
+  <link rel="icon" type="image/png" href="assets/images/favicon.jpeg" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <link rel="icon" type="image/png" href="assets/images/favicon.jpeg" />
-
 </head>
 <body class="bg-gray-900 text-gray-300 pt-24">
 
-  <!-- Navbar -->
-  <header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-    <a href="/index.html"><div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div></a>
-    <nav class="space-x-6">
+<!-- Navbar (same on every page; the button shows the menu on phones) -->
+<header class="bg-gray-900 text-gray-200 fixed top-0 left-0 w-full z-50 shadow-lg">
+  <div class="px-6 py-5 flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-bold text-purple-500">Imad Ali Syed</a>
+    <nav class="hidden md:flex gap-6" aria-label="Main">
       <a href="index.html" class="hover:text-purple-400">Home</a>
       <a href="about.html" class="hover:text-purple-400">About</a>
-      <!-- <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a> -->
+      <a href="club.html" class="hover:text-purple-400">Club</a>
+      <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a>
       <a href="skills.html" class="hover:text-purple-400">Skills</a>
-      <!-- <a href="blog.html" class="hover:text-purple-400">Blog</a> -->
-      <a href="contact.html" class="hover:text-purple-400">Contact</a>
+      <a href="contact.html" class="text-purple-400" aria-current="page">Contact</a>
     </nav>
-  </header>
+    <button id="navToggle" type="button" class="md:hidden p-2 -mr-2 text-gray-300 hover:text-purple-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav id="mobileNav" class="hidden md:hidden border-t border-gray-800 px-6 pb-4" aria-label="Main">
+      <a href="index.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Home</a>
+      <a href="about.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">About</a>
+      <a href="club.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Club</a>
+      <a href="portfolio.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Portfolio</a>
+      <a href="skills.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Skills</a>
+      <a href="contact.html" class="block py-3 border-b border-gray-800 text-purple-400" aria-current="page">Contact</a>
+  </nav>
+</header>
+<script>
+(function () {
+  var b = document.getElementById('navToggle'), m = document.getElementById('mobileNav');
+  if (!b || !m) { return; }
+  b.addEventListener('click', function () {
+    var open = !m.classList.toggle('hidden');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+})();
+</script>
 
-  <!-- Contact Section -->
   <section class="max-w-4xl mx-auto px-6 py-16" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold mb-10 text-purple-500">Contact Me</h2>
+    <h1 class="text-3xl md:text-4xl font-bold mb-3 text-purple-500">Contact Me</h1>
+    <p class="text-gray-400 mb-10">Open to opportunities in cybersecurity, web development and teaching. Fill this in and your email app opens with the message ready to send.</p>
 
-    <form class="bg-gray-800 p-8 rounded-lg shadow-lg space-y-6">
+    <form id="contactForm" class="bg-gray-800 p-8 rounded-lg shadow-lg space-y-6" novalidate>
       <div>
         <label class="block mb-2" for="name">Name</label>
-        <input class="w-full p-3 rounded bg-gray-900 border border-gray-700" type="text" id="name" placeholder="Your Name" required>
+        <input class="w-full p-3 rounded bg-gray-900 border border-gray-700 focus:border-purple-500 focus:outline-none" type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
       </div>
       <div>
         <label class="block mb-2" for="email">Email</label>
-        <input class="w-full p-3 rounded bg-gray-900 border border-gray-700" type="email" id="email" placeholder="Your Email" required>
+        <input class="w-full p-3 rounded bg-gray-900 border border-gray-700 focus:border-purple-500 focus:outline-none" type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+      </div>
+      <div>
+        <label class="block mb-2" for="subject">Subject</label>
+        <input class="w-full p-3 rounded bg-gray-900 border border-gray-700 focus:border-purple-500 focus:outline-none" type="text" id="subject" name="subject" placeholder="What's this about?">
       </div>
       <div>
         <label class="block mb-2" for="message">Message</label>
-        <textarea class="w-full p-3 rounded bg-gray-900 border border-gray-700" id="message" rows="5" placeholder="Your Message" required></textarea>
+        <textarea class="w-full p-3 rounded bg-gray-900 border border-gray-700 focus:border-purple-500 focus:outline-none" id="message" name="message" rows="6" placeholder="Your message" required></textarea>
       </div>
+      <p id="formError" class="hidden text-pink-400 text-sm"></p>
       <button type="submit" class="bg-purple-500 hover:bg-purple-400 text-black font-semibold px-6 py-3 rounded-lg transition">Send Message</button>
+      <p id="formDone" class="hidden text-gray-400 text-sm">Your email app should have opened with the message filled in. If nothing happened, email me directly at
+        <a href="mailto:imadalisyed15@gmail.com" class="text-purple-400 hover:underline">imadalisyed15@gmail.com</a>.</p>
     </form>
 
-    <div class="mt-10 text-gray-400">
-      <p>Email: <a href="mailto:imadalisyed15@gmail.com" class="text-purple-500 hover:underline">imadalisyed15@gmail.com</a></p>
-      <p>GitHub: <a href="https://github.com/Imad-ali-syed" class="text-purple-500 hover:underline">github.com/Imad-ali-syed</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/imadalisyed" class="text-purple-500 hover:underline">linkedin.com/in/imadalisyed</a></p>
+    <div class="mt-10 grid gap-3 sm:grid-cols-3">
+      <a href="mailto:imadalisyed15@gmail.com" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg p-4 transition-colors">
+        <div class="text-xs tracking-widest text-gray-500 mb-1">EMAIL</div>
+        <div class="text-purple-400 break-all">imadalisyed15@gmail.com</div>
+      </a>
+      <a href="https://www.linkedin.com/in/imadalisyed" target="_blank" rel="noopener" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg p-4 transition-colors">
+        <div class="text-xs tracking-widest text-gray-500 mb-1">LINKEDIN</div>
+        <div class="text-purple-400">linkedin.com/in/imadalisyed</div>
+      </a>
+      <a href="https://github.com/Imad-ali-syed" target="_blank" rel="noopener" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg p-4 transition-colors">
+        <div class="text-xs tracking-widest text-gray-500 mb-1">GITHUB</div>
+        <div class="text-purple-400">github.com/Imad-ali-syed</div>
+      </a>
     </div>
   </section>
 
+  <footer class="bg-gray-900 border-t border-gray-800 py-8 text-center text-gray-400">
+    <p class="text-sm">&copy; <span id="year"></span> Imad Ali Syed. All rights reserved.</p>
+  </footer>
+
   <script>
     AOS.init({ duration: 800, once: true });
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // There is no server behind this site (it's GitHub Pages), so the form builds
+    // a mailto: link and hands the message to the visitor's own email app.
+    (function () {
+      var TO = 'imadalisyed15@gmail.com';
+      var form = document.getElementById('contactForm');
+      var err = document.getElementById('formError');
+      var done = document.getElementById('formDone');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = form.name.value.trim();
+        var email = form.email.value.trim();
+        var subject = form.subject.value.trim();
+        var message = form.message.value.trim();
+        if (!name || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          err.textContent = 'Please fill in your name, a valid email address and a message.';
+          err.classList.remove('hidden');
+          return;
+        }
+        err.classList.add('hidden');
+        var body = message + '\n\n— ' + name + ' (' + email + ')';
+        var href = 'mailto:' + TO +
+          '?subject=' + encodeURIComponent(subject || ('Message from ' + name + ' via imadalisyed.com')) +
+          '&body=' + encodeURIComponent(body);
+        window.location.href = href;
+        done.classList.remove('hidden');
+      });
+    })();
   </script>
 </body>
 </html>

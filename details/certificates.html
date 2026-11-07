@@ -11,38 +11,83 @@
 </head>
 <body class="pt-24 bg-gray-900 text-gray-300">
 
-  <!-- Navbar -->
-  <header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-    <a href="../index.html"><div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div></a>
-    <nav class="space-x-6">
-      <a href="../index.html" class="hover:text-purple-400">Home</a>
-      <a href="../about.html" class="hover:text-purple-400">About</a>
-      <a href="../skills.html" class="hover:text-purple-400">Skills</a>
-      <a href="../contact.html" class="hover:text-purple-400">Contact</a>
+  <!-- Navbar (same on every page; the button shows the menu on phones) -->
+<header class="bg-gray-900 text-gray-200 fixed top-0 left-0 w-full z-50 shadow-lg">
+  <div class="px-6 py-5 flex justify-between items-center">
+    <a href="../index.html" class="text-2xl font-bold text-purple-500">Imad Ali Syed</a>
+    <nav class="hidden md:flex gap-6" aria-label="Main">
+      <a href="../index.html" class=" hover:text-purple-400">Home</a>
+      <a href="../about.html" class=" hover:text-purple-400">About</a>
+      <a href="../club.html" class=" hover:text-purple-400">Club</a>
+      <a href="../portfolio.html" class=" hover:text-purple-400">Portfolio</a>
+      <a href="../skills.html" class=" hover:text-purple-400">Skills</a>
+      <a href="../contact.html" class=" hover:text-purple-400">Contact</a>
     </nav>
-  </header>
+    <button id="navToggle" type="button" class="md:hidden p-2 -mr-2 text-gray-300 hover:text-purple-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav id="mobileNav" class="hidden md:hidden border-t border-gray-800 px-6 pb-4" aria-label="Main">
+      <a href="../index.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Home</a>
+      <a href="../about.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">About</a>
+      <a href="../club.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Club</a>
+      <a href="../portfolio.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Portfolio</a>
+      <a href="../skills.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Skills</a>
+      <a href="../contact.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Contact</a>
+  </nav>
+</header>
+<script>
+(function () {
+  var b = document.getElementById('navToggle'), m = document.getElementById('mobileNav');
+  if (!b || !m) { return; }
+  b.addEventListener('click', function () {
+    var open = !m.classList.toggle('hidden');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+})();
+</script>
 
   <section class="max-w-3xl mx-auto px-6 py-16" data-aos="fade-up">
     <a href="../index.html#timeline" class="text-purple-400 hover:text-purple-300 text-sm">&larr; Back to Timeline</a>
     <h1 class="text-3xl md:text-4xl font-bold text-purple-400 mt-4 mb-2">Certificates</h1>
-    <p class="text-gray-300 mb-10">Certifications, competitions, and recognitions, latest to oldest.</p>
+    <p class="text-gray-300 mb-10">Certifications, competitions, and recognitions, latest to oldest. Click a photo to see it full size.</p>
 
     <div class="mb-6">
-      <h3 class="text-xl font-semibold text-white">Most Valuable Teammate</h3>
+      <h3 class="text-xl font-semibold text-white"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7514920401559240704/" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-8">Google Cybersecurity Certificate courses</a></h3>
       <p class="text-gray-400 text-sm italic">2026</p>
-      <p class="leading-relaxed">NCAE Cyber Games</p>
+      <p class="leading-relaxed"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7505407771840757760/" target="_blank" rel="noopener" class="text-purple-300 hover:text-white underline decoration-purple-500/40">Foundations of Cybersecurity</a>; <a href="https://www.linkedin.com/feed/update/urn:li:activity:7506842013649252353/" target="_blank" rel="noopener" class="text-purple-300 hover:text-white underline decoration-purple-500/40">Play It Safe: Manage Security Risks</a>; <a href="https://www.linkedin.com/feed/update/urn:li:activity:7514920401559240704/" target="_blank" rel="noopener" class="text-purple-300 hover:text-white underline decoration-purple-500/40">Connect and Protect: Networks and Network Security</a> (Google, Coursera)</p>
     </div>
 
     <div class="mb-6">
-      <h3 class="text-xl font-semibold text-white">Finalist</h3>
-      <p class="text-gray-400 text-sm italic">2025</p>
-      <p class="leading-relaxed">CSAW Hack3D, NYU Tandon School of Engineering</p>
+      <h3 class="text-xl font-semibold text-white"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7469195364827447296/" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-8">Most Valuable Teammate</a></h3>
+      <p class="text-gray-400 text-sm italic">2026</p>
+      <p class="leading-relaxed">NCAE Cyber Games, representing The City College of New York</p>
+    <div class="grid grid-cols-2 gap-3 mt-3" data-gallery>
+      <figure><img src="../assets/images/events/ncae-2026-award.jpg" alt="NCAE Cyber Games 2026 Most Valuable Teammate certificate" loading="lazy" data-lightbox class="w-full h-44 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">NCAE Cyber Games 2026 Most Valuable Teammate certificate</figcaption></figure>
+      <figure><img src="../assets/images/events/ncae-2026-swag.jpg" alt="Blue team gear from the NCAE Cyber Games" loading="lazy" data-lightbox class="w-full h-44 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Blue team gear from the NCAE Cyber Games</figcaption></figure>
+    </div>
     </div>
 
     <div class="mb-6">
-      <h3 class="text-xl font-semibold text-white">Competitor</h3>
+      <h3 class="text-xl font-semibold text-white"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7407866796969574400/" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-8">Finalist</a></h3>
       <p class="text-gray-400 text-sm italic">2025</p>
-      <p class="leading-relaxed">Cyber Career Challenge, California State University, San Bernardino</p>
+      <p class="leading-relaxed">10th Hack3D Manufacturing Cybersecurity Challenge, CSAW 2025, NYU Tandon School of Engineering</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3" data-gallery>
+      <figure><img src="../assets/images/events/csaw-hack3d-certificate.jpg" alt="CSAW Hack3D 2025 finalist certificate" loading="lazy" data-lightbox class="w-full h-36 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">CSAW Hack3D 2025 finalist certificate</figcaption></figure>
+      <figure><img src="../assets/images/events/csaw-nyu-tandon.jpg" alt="NYU Tandon School of Engineering" loading="lazy" data-lightbox class="w-full h-36 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">NYU Tandon School of Engineering</figcaption></figure>
+      <figure><img src="../assets/images/events/csaw-hack3d-whiteboard.jpg" alt="Planning on the whiteboard at Hack3D" loading="lazy" data-lightbox class="w-full h-36 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Planning on the whiteboard at Hack3D</figcaption></figure>
+      <figure><img src="../assets/images/events/csaw-hack3d-lab.jpg" alt="The Hack3D lab at NYU Tandon" loading="lazy" data-lightbox class="w-full h-36 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">The Hack3D lab at NYU Tandon</figcaption></figure>
+    </div>
+    </div>
+
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold text-white"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7372131159826169857/" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-8">Competitor</a></h3>
+      <p class="text-gray-400 text-sm italic">2025</p>
+      <p class="leading-relaxed">Cyber Career Challenge, NCyTE and California State University, San Bernardino</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3" data-gallery>
+      <figure><img src="../assets/images/events/cyber-career-challenge-2025.jpg" alt="Cyber Career Challenge 2025 certificate of achievement" loading="lazy" data-lightbox class="w-full h-44 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Cyber Career Challenge 2025 certificate of achievement</figcaption></figure>
+    </div>
     </div>
 
     <div class="mb-6">
@@ -52,9 +97,18 @@
     </div>
 
     <div class="mb-6">
-      <h3 class="text-xl font-semibold text-white">DECATHON 2024 – Smart Robot Car</h3>
+      <h3 class="text-xl font-semibold text-white"><a href="../portfolio.html" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-8">DECATHON 2024 – Smart Robot Car</a></h3>
       <p class="text-gray-400 text-sm italic">Apr 2024</p>
       <p class="leading-relaxed">NDLI Club, IIT Kharagpur, India</p>
+    </div>
+
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold text-white"><a href="https://www.linkedin.com/feed/update/urn:li:share:7102278856102871040/" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-8">Ethical Hacking Webinar – Certificate of Appreciation</a></h3>
+      <p class="text-gray-400 text-sm italic">Jul 2023</p>
+      <p class="leading-relaxed">Ersegment Solutions Pvt Ltd</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3" data-gallery>
+      <figure><img src="../assets/images/events/ersegment-webinar-certificate.jpg" alt="Ersegment Solutions ethical hacking webinar certificate" loading="lazy" data-lightbox class="w-full h-28 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Ersegment Solutions ethical hacking webinar certificate</figcaption></figure>
+    </div>
     </div>
 
     <div class="mb-6">
@@ -73,5 +127,6 @@
   <script>
     AOS.init({ duration: 800, once: true });
   </script>
+  <script src="../assets/js/lightbox.js" defer></script>
 </body>
 </html>

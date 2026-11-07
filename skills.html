@@ -4,69 +4,96 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skills - Imad Ali Syed</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="Imad Ali Syed's skills: security operations, threat analysis, penetration testing, security tools, programming and operating systems.">
   <link rel="icon" type="image/png" href="assets/images/favicon.jpeg" />
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    .card { background:#1f2937; border:1px solid #374151; }
+    .skill { display:inline-block; padding:.4rem .85rem; border-radius:9999px; font-size:.9rem; background:#111827; border:1px solid #374151; color:#e5e7eb; transition:border-color .2s, color .2s; }
+    .skill:hover { border-color:#a855f7; color:#d8b4fe; }
+  </style>
 </head>
 <body class="bg-gray-900 text-gray-300 pt-24">
 
-  <!-- Navbar -->
-  <header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-    <a href="/index.html"><div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div></a>
-    <nav class="space-x-6">
-      <a href="index.html" class="hover:text-purple-400">Home</a>
-      <a href="about.html" class="hover:text-purple-400">About</a>
-      <!-- <a href="portfolio.html" class="hover:text-purple-400">Portfolio</a> -->
-      <a href="skills.html" class="hover:text-purple-400">Skills</a>
-      <!-- <a href="blog.html" class="hover:text-purple-400">Blog</a> -->
-      <a href="contact.html" class="hover:text-purple-400">Contact</a>
-    </nav>
-  </header>
+<!--NAV-->
 
-  <!-- Skills Section -->
-  <section class="max-w-5xl mx-auto px-6 py-16" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold mb-10 text-purple-500">My Skills</h2>
-    
-    <h3 class="text-xl font-semibold mb-4 text-purple-400">Technical Skills</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-      <div>
-        <p>HTML / CSS</p>
-        <div class="w-full bg-gray-800 rounded-full h-4">
-          <div class="bg-purple-500 h-4 rounded-full w-95"></div>
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <h1 class="text-3xl md:text-4xl font-bold mb-3 text-purple-500" data-aos="fade-up">My Skills</h1>
+    <p class="text-gray-400 max-w-3xl mb-12" data-aos="fade-up">Security operations, threat detection and network traffic analysis, plus the programming and web skills I use to build tools and teach.</p>
+
+    <div class="grid gap-6 md:grid-cols-2">
+
+      <div class="card rounded-xl p-6" data-aos="fade-up">
+        <h2 class="text-xl font-semibold text-purple-400 mb-4">Security skillset</h2>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill">Security Operations</span><span class="skill">Threat Analysis</span><span class="skill">Threat Detection</span><span class="skill">Penetration Testing</span><span class="skill">Network Traffic Analysis</span><span class="skill">OWASP Top 10</span><span class="skill">Risk Assessment</span><span class="skill">Security Automation</span><span class="skill">Scripting</span>
         </div>
       </div>
-      <div>
-        <p>JavaScript / React</p>
-        <div class="w-full bg-gray-800 rounded-full h-4">
-          <div class="bg-purple-500 h-4 rounded-full w-90"></div>
+
+      <div class="card rounded-xl p-6" data-aos="fade-up" data-aos-delay="50">
+        <h2 class="text-xl font-semibold text-purple-400 mb-4">Security tools</h2>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill">Wireshark</span><span class="skill">Metasploit</span><span class="skill">Splunk</span><span class="skill">Burp Suite</span><span class="skill">Nmap</span><span class="skill">Hydra</span><span class="skill">Cisco Packet Tracer</span><span class="skill">Kali Linux</span>
         </div>
       </div>
-      <div>
-        <p>Node.js / Express</p>
-        <div class="w-full bg-gray-800 rounded-full h-4">
-          <div class="bg-purple-500 h-4 rounded-full w-85"></div>
+
+      <div class="card rounded-xl p-6" data-aos="fade-up">
+        <h2 class="text-xl font-semibold text-purple-400 mb-4">Programming</h2>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill">Python</span><span class="skill">SQL</span><span class="skill">C / C++</span><span class="skill">Rust</span><span class="skill">Bash</span><span class="skill">PowerShell</span>
         </div>
       </div>
-      <div>
-        <p>Python / Security Tools</p>
-        <div class="w-full bg-gray-800 rounded-full h-4">
-          <div class="bg-purple-500 h-4 rounded-full w-80"></div>
+
+      <div class="card rounded-xl p-6" data-aos="fade-up" data-aos-delay="50">
+        <h2 class="text-xl font-semibold text-purple-400 mb-4">Data &amp; machine learning</h2>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill">Pandas</span><span class="skill">Scikit-learn</span><span class="skill">NLTK</span><span class="skill">TF-IDF</span><span class="skill">OpenCV</span>
         </div>
+      </div>
+
+      <div class="card rounded-xl p-6" data-aos="fade-up">
+        <h2 class="text-xl font-semibold text-purple-400 mb-4">Operating systems &amp; platforms</h2>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill">Windows Server</span><span class="skill">Ubuntu</span><span class="skill">Kali Linux</span><span class="skill">macOS</span><span class="skill">Office 365</span>
+        </div>
+      </div>
+
+      <div class="card rounded-xl p-6" data-aos="fade-up" data-aos-delay="50">
+        <h2 class="text-xl font-semibold text-purple-400 mb-4">Web development</h2>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill">HTML</span><span class="skill">CSS</span><span class="skill">JavaScript</span><span class="skill">Tailwind CSS</span><span class="skill">Secure coding</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card rounded-xl p-6 mt-6" data-aos="fade-up">
+      <h2 class="text-xl font-semibold text-purple-400 mb-4">Beyond the tools</h2>
+      <div class="flex flex-wrap gap-2">
+        <span class="skill">Teaching &amp; mentoring</span><span class="skill">Explaining complex security concepts</span><span class="skill">Team leadership</span><span class="skill">Problem solving</span><span class="skill">Communication</span>
       </div>
     </div>
 
-    <h3 class="text-xl font-semibold mb-4 text-purple-400">Soft Skills</h3>
-    <ul class="list-disc pl-6 space-y-2">
-      <li>Problem Solving</li>
-      <li>Team Collaboration</li>
-      <li>Communication</li>
-      <li>Time Management</li>
-    </ul>
+    <div class="mt-12 flex flex-wrap gap-3" data-aos="fade-up">
+      <a href="details/certificates.html" class="bg-purple-600 hover:bg-purple-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors">Certificates &amp; competitions</a>
+      <a href="portfolio.html" class="border border-gray-600 hover:border-purple-400 hover:text-purple-300 px-6 py-3 rounded-lg transition-colors">See them in my projects &rarr;</a>
+    </div>
   </section>
+
+  <footer class="bg-gray-900 border-t border-gray-800 py-8 text-center text-gray-400">
+    <div class="mb-4">
+      <a href="https://github.com/Imad-ali-syed" target="_blank" rel="noopener" class="mx-3 hover:text-purple-400">GitHub</a>
+      <a href="https://linkedin.com/in/imadalisyed" target="_blank" rel="noopener" class="mx-3 hover:text-purple-400">LinkedIn</a>
+      <a href="mailto:imadalisyed15@gmail.com" class="mx-3 hover:text-purple-400">Email</a>
+    </div>
+    <p class="text-sm">&copy; <span id="year"></span> Imad Ali Syed. All rights reserved.</p>
+  </footer>
 
   <script>
     AOS.init({ duration: 800, once: true });
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

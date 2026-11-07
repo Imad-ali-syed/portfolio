@@ -11,37 +11,79 @@
 </head>
 <body class="pt-24 bg-gray-900 text-gray-300">
 
-  <!-- Navbar -->
-  <header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-    <a href="../index.html"><div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div></a>
-    <nav class="space-x-6">
-      <a href="../index.html" class="hover:text-purple-400">Home</a>
-      <a href="../about.html" class="hover:text-purple-400">About</a>
-      <a href="../skills.html" class="hover:text-purple-400">Skills</a>
-      <a href="../contact.html" class="hover:text-purple-400">Contact</a>
+  <!-- Navbar (same on every page; the button shows the menu on phones) -->
+<header class="bg-gray-900 text-gray-200 fixed top-0 left-0 w-full z-50 shadow-lg">
+  <div class="px-6 py-5 flex justify-between items-center">
+    <a href="../index.html" class="text-2xl font-bold text-purple-500">Imad Ali Syed</a>
+    <nav class="hidden md:flex gap-6" aria-label="Main">
+      <a href="../index.html" class=" hover:text-purple-400">Home</a>
+      <a href="../about.html" class=" hover:text-purple-400">About</a>
+      <a href="../club.html" class=" hover:text-purple-400">Club</a>
+      <a href="../portfolio.html" class=" hover:text-purple-400">Portfolio</a>
+      <a href="../skills.html" class=" hover:text-purple-400">Skills</a>
+      <a href="../contact.html" class=" hover:text-purple-400">Contact</a>
     </nav>
-  </header>
+    <button id="navToggle" type="button" class="md:hidden p-2 -mr-2 text-gray-300 hover:text-purple-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav id="mobileNav" class="hidden md:hidden border-t border-gray-800 px-6 pb-4" aria-label="Main">
+      <a href="../index.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Home</a>
+      <a href="../about.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">About</a>
+      <a href="../club.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Club</a>
+      <a href="../portfolio.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Portfolio</a>
+      <a href="../skills.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Skills</a>
+      <a href="../contact.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Contact</a>
+  </nav>
+</header>
+<script>
+(function () {
+  var b = document.getElementById('navToggle'), m = document.getElementById('mobileNav');
+  if (!b || !m) { return; }
+  b.addEventListener('click', function () {
+    var open = !m.classList.toggle('hidden');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+})();
+</script>
 
   <section class="max-w-3xl mx-auto px-6 py-16" data-aos="fade-up">
     <a href="../index.html#timeline" class="text-purple-400 hover:text-purple-300 text-sm">&larr; Back to Timeline</a>
-    <h1 class="text-3xl md:text-4xl font-bold text-purple-400 mt-4 mb-2">Master of Science in Cybersecurity</h1>
+    <h1 class="text-3xl md:text-4xl font-bold text-purple-400 mt-4 mb-2"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7303649286926344192/" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-8">Master of Science in Cybersecurity</a></h1>
     <p class="text-gray-400 italic mb-1">Jan 2025 – Dec 2026 (Expected) | Current CGPA: 3.6</p>
     <p class="text-gray-300 mb-6">City College of New York, New York, NY</p>
+    <div class="flex flex-wrap gap-2 mb-8"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7303649286926344192/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-600 text-purple-300 hover:border-purple-400 hover:text-white transition-colors"><span class="text-xs text-cyan-400 font-mono">in</span>Starting my MS post</a><a href="https://www.linkedin.com/feed/update/urn:li:activity:7461896932832100352/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-600 text-purple-300 hover:border-purple-400 hover:text-white transition-colors"><span class="text-xs text-cyan-400 font-mono">in</span>Capstone at PitchFest</a><a href="#photos" data-open-gallery="photos" class="inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-600 text-purple-300 hover:border-purple-400 hover:text-white transition-colors">&#128247; Photos</a></div>
     <p class="leading-relaxed text-lg">Graduate coursework spanning network security, cryptography, secure software design, and digital forensics, alongside hands-on lab work in offensive and defensive security.</p>
+
+
+    <h2 class="text-2xl font-bold text-purple-400 mt-10 mb-4">Starting at City College</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="photos" data-gallery>
+      <figure><img src="../assets/images/events/ccny-mascot.jpg" alt="Meeting the City College beaver in my first semester" loading="lazy" data-lightbox class="w-full h-52 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Meeting the City College beaver in my first semester</figcaption></figure>
+      <figure><img src="../assets/images/events/ccny-campus.jpg" alt="The CCNY campus" loading="lazy" data-lightbox class="w-full h-52 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">The CCNY campus</figcaption></figure>
+      <figure><img src="../assets/images/events/ccny-first-semester.jpg" alt="Starting my master's at City College, 2025" loading="lazy" data-lightbox class="w-full h-52 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Starting my master's at City College, 2025</figcaption></figure>
+    </div>
 
     <h2 class="text-2xl font-bold text-purple-400 mt-10 mb-4">Projects</h2>
 
     <div class="mb-6">
-      <h3 class="text-xl font-semibold text-white">AI-Based Ransomware Intrusion Detection System (Capstone Research Project)</h3>
+      <h3 class="text-xl font-semibold text-white"><a href="https://github.com/ghost-protocol/capstone-project-ccny" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-8">AI-Based Ransomware Intrusion Detection System (Capstone Research Project)</a></h3>
       <ul class="list-disc pl-6 space-y-2 mt-2">
         <li>Built pipelines using Python, Pandas, and Scikit-learn for high-volume data analysis.</li>
         <li>Implemented ML models to enable near real-time threat detection workflows.</li>
         <li>Created monitoring dashboards to analyze alerts and improve visibility into ransomware detection patterns.</li>
       </ul>
+      <p class="text-gray-400 mt-3">Presented at CUNY PitchFest 2026 with my capstone team, with faculty advisor Prof. Tarek Saadawi.</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4" data-gallery>
+      <figure><img src="../assets/images/events/pitchfest-team.jpg" alt="My capstone team at CUNY PitchFest" loading="lazy" data-lightbox class="w-full h-36 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">My capstone team at CUNY PitchFest</figcaption></figure>
+      <figure><img src="../assets/images/events/pitchfest-2.jpg" alt="Presenting our AI-based IDS" loading="lazy" data-lightbox class="w-full h-36 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Presenting our AI-based IDS</figcaption></figure>
+      <figure><img src="../assets/images/events/pitchfest-3.jpg" alt="Feedback from industry professionals" loading="lazy" data-lightbox class="w-full h-36 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Feedback from industry professionals</figcaption></figure>
+      <figure><img src="../assets/images/events/pitchfest-4.jpg" alt="Networking at PitchFest" loading="lazy" data-lightbox class="w-full h-36 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Networking at PitchFest</figcaption></figure>
+    </div>
     </div>
 
     <div class="mb-6">
-      <h3 class="text-xl font-semibold text-white">Phishing Email Detection System (CEAS_08 Dataset)</h3>
+      <h3 class="text-xl font-semibold text-white"><a href="https://github.com/seongjae9902/Phishing_Email_Detection" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-8">Phishing Email Detection System (CEAS_08 Dataset)</a></h3>
       <ul class="list-disc pl-6 space-y-2 mt-2">
         <li>Developed ML pipeline processing thousands of emails using NLTK and TF-IDF.</li>
         <li>Built hybrid detection system combining rule-based and ML approaches.</li>
@@ -66,10 +108,44 @@
         <li>Conducted traffic analysis and troubleshooting using CLI tools, fixing misconfigurations and improving performance.</li>
       </ul>
     </div>
+
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold text-white"><a href="https://github.com/Imad-ali-syed/applied_cryptography" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-8">Threshold ElGamal Encryption (Applied Cryptography)</a></h3>
+      <ul class="list-disc pl-6 space-y-2 mt-2">
+        <li>Implemented a (t+1)-out-of-n threshold ElGamal scheme where the secret key is never reconstructed in memory.</li>
+        <li>Split the private key with Shamir Secret Sharing and used hybrid ElGamal + AES encryption, with a GUI demo.</li>
+      </ul>
+      <a href="https://github.com/Imad-ali-syed/applied_cryptography" target="_blank" rel="noopener" class="inline-block mt-2 text-purple-400 hover:text-purple-300">Code on GitHub &rarr;</a>
+    </div>
+
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold text-white"><a href="https://github.com/Imadalisyed/Facial_Detection_Project" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-8">Privacy-Preserving Facial Verification (Data Privacy)</a></h3>
+      <ul class="list-disc pl-6 space-y-2 mt-2">
+        <li>Built a one-to-one facial verification web app in Flask that stores only Fernet-encrypted ArcFace embeddings, never raw photos.</li>
+        <li>Consent-based enrollment, right to deletion, and fairness auditing.</li>
+      </ul>
+    </div>
+
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold text-white"><a href="../assets/docs/web-application-attack-slides.pdf" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-8">Vulnerable Web App: Attack &amp; Defend (Network Security)</a></h3>
+      <ul class="list-disc pl-6 space-y-2 mt-2">
+        <li>Built one Django app with a "vulnerable mode" toggle to demonstrate SQL injection, XSS, directory traversal, parameter tampering, cookie poisoning and web crawling, and how each is defended (with Tarannum Choudhary and Tejveer Waraich).</li>
+      </ul>
+    </div>
+
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold text-white">Bluetooth Exploitation via AI-Generated Voice (Penetration Testing &amp; Ethical Hacking)</h3>
+      <ul class="list-disc pl-6 space-y-2 mt-2">
+        <li>Researched a social-engineering attack that combines AI voice cloning with Bluetooth-connected smart devices to issue commands in a target's voice; written up as an IEEE-format paper with Jay Jariwala and Muhaiminul Islam.</li>
+      </ul>
+    </div>
+
+    <a href="../portfolio.html" class="inline-block mt-4 bg-purple-600 hover:bg-purple-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors">All projects with photos &rarr;</a>
   </section>
 
   <script>
     AOS.init({ duration: 800, once: true });
   </script>
+  <script src="../assets/js/lightbox.js" defer></script>
 </body>
 </html>

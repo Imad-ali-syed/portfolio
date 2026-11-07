@@ -11,31 +11,63 @@
 </head>
 <body class="pt-24 bg-gray-900 text-gray-300">
 
-  <!-- Navbar -->
-  <header class="bg-gray-900 text-gray-200 p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-    <a href="../index.html"><div class="text-2xl font-bold text-purple-500">Imad Ali Syed</div></a>
-    <nav class="space-x-6">
-      <a href="../index.html" class="hover:text-purple-400">Home</a>
-      <a href="../about.html" class="hover:text-purple-400">About</a>
-      <a href="../skills.html" class="hover:text-purple-400">Skills</a>
-      <a href="../contact.html" class="hover:text-purple-400">Contact</a>
+  <!-- Navbar (same on every page; the button shows the menu on phones) -->
+<header class="bg-gray-900 text-gray-200 fixed top-0 left-0 w-full z-50 shadow-lg">
+  <div class="px-6 py-5 flex justify-between items-center">
+    <a href="../index.html" class="text-2xl font-bold text-purple-500">Imad Ali Syed</a>
+    <nav class="hidden md:flex gap-6" aria-label="Main">
+      <a href="../index.html" class=" hover:text-purple-400">Home</a>
+      <a href="../about.html" class=" hover:text-purple-400">About</a>
+      <a href="../club.html" class=" hover:text-purple-400">Club</a>
+      <a href="../portfolio.html" class=" hover:text-purple-400">Portfolio</a>
+      <a href="../skills.html" class=" hover:text-purple-400">Skills</a>
+      <a href="../contact.html" class=" hover:text-purple-400">Contact</a>
     </nav>
-  </header>
+    <button id="navToggle" type="button" class="md:hidden p-2 -mr-2 text-gray-300 hover:text-purple-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav id="mobileNav" class="hidden md:hidden border-t border-gray-800 px-6 pb-4" aria-label="Main">
+      <a href="../index.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Home</a>
+      <a href="../about.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">About</a>
+      <a href="../club.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Club</a>
+      <a href="../portfolio.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Portfolio</a>
+      <a href="../skills.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Skills</a>
+      <a href="../contact.html" class="block py-3 border-b border-gray-800 hover:text-purple-400">Contact</a>
+  </nav>
+</header>
+<script>
+(function () {
+  var b = document.getElementById('navToggle'), m = document.getElementById('mobileNav');
+  if (!b || !m) { return; }
+  b.addEventListener('click', function () {
+    var open = !m.classList.toggle('hidden');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+})();
+</script>
 
   <section class="max-w-3xl mx-auto px-6 py-16" data-aos="fade-up">
     <a href="../index.html#timeline" class="text-purple-400 hover:text-purple-300 text-sm">&larr; Back to Timeline</a>
-    <h1 class="text-3xl md:text-4xl font-bold text-purple-400 mt-4 mb-2">Machine Learning Intern</h1>
+    <h1 class="text-3xl md:text-4xl font-bold text-purple-400 mt-4 mb-2"><a href="https://www.linkedin.com/feed/update/urn:li:share:7102274160906694657/" target="_blank" rel="noopener" class="hover:text-purple-300 underline decoration-purple-500/40 underline-offset-8">Machine Learning Intern</a></h1>
     <p class="text-gray-400 italic mb-1">May 2023 – Jun 2023</p>
-    <p class="text-gray-300 mb-6">Datapoint Info Solutions, Hyderabad, India</p>
+    <p class="text-gray-300 mb-6">Datapoint IT &amp; Hardware Tech (Datapoint Info Solutions), Hyderabad, India</p>
+    <div class="flex flex-wrap gap-2 mb-8"><a href="https://www.linkedin.com/feed/update/urn:li:share:7102274160906694657/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-600 text-purple-300 hover:border-purple-400 hover:text-white transition-colors"><span class="text-xs text-cyan-400 font-mono">in</span>Internship post</a><a href="../assets/docs/datapoint-ecommerce-recommendation-slides.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-600 text-purple-300 hover:border-purple-400 hover:text-white transition-colors"><span class="text-xs text-cyan-400 font-mono">&#128196;</span>Project slides (PDF)</a><a href="#photos" data-open-gallery="photos" class="inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-600 text-purple-300 hover:border-purple-400 hover:text-white transition-colors">&#127942; Internship certificate</a><a href="#photos" data-open-gallery="photos" class="inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-600 text-purple-300 hover:border-purple-400 hover:text-white transition-colors">&#128247; Photo</a></div>
     <ul class="list-disc pl-6 space-y-2">
       <li>Built ML-powered e-commerce platform (+15% engagement, +20% conversions).</li>
       <li>Boosted performance by 30% with optimized frontend & backend code.</li>
       <li>Resolved 15+ technical issues, achieving 99.9% uptime.</li>
     </ul>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-10" id="photos" data-gallery>
+      <figure><img src="../assets/images/events/datapoint-internship.jpg" alt="Receiving my internship certificate at Datapoint Info Solutions, 2023" loading="lazy" data-lightbox class="w-full h-96 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Receiving my internship certificate at Datapoint Info Solutions, 2023</figcaption></figure>
+      <figure><img src="../assets/images/events/datapoint-internship-certificate.jpg" alt="Datapoint internship certificate: E-Commerce Product Recommendation System, 8 May to 8 June 2023" loading="lazy" data-lightbox class="w-full h-96 object-cover rounded-lg cursor-zoom-in border border-gray-800 hover:border-purple-500 transition-colors"><figcaption class="text-xs text-gray-500 mt-1.5">Datapoint internship certificate: E-Commerce Product Recommendation System, 8 May to 8 June 2023</figcaption></figure>
+    </div>
   </section>
 
   <script>
     AOS.init({ duration: 800, once: true });
   </script>
+  <script src="../assets/js/lightbox.js" defer></script>
 </body>
 </html>
