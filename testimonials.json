@@ -1,0 +1,24 @@
+{
+  "_howto": [
+    "Testimonials shown in the 'What people say' section of imadalisyed.com (homepage).",
+    "The section stays hidden until this list has at least one entry, so it is safe to push empty.",
+    "",
+    "Only add words people actually sent you, and only with their permission to publish them.",
+    "Paste their text as they wrote it (fixing obvious typos is fine). One block per person.",
+    "",
+    "Fields:",
+    "  quote         (required) what they said",
+    "  name          (required) their name as they want it shown, e.g. 'Jane D.' if they prefer",
+    "  role          (optional) e.g. 'Student, MAC246 Advanced Network Security, LaGuardia'",
+    "  relationship  (optional) one of: student, colleague, teammate, professor, mentor, manager",
+    "                -> drives the filter buttons (Students / Colleagues / Teammates / Professors ...)",
+    "  date          (optional) e.g. '2026-11'",
+    "  link          (optional) their LinkedIn or website",
+    "",
+    "Example entry (copy, then edit):",
+    "  { \"quote\": \"...\", \"name\": \"...\", \"role\": \"...\", \"relationship\": \"student\", \"date\": \"2026-11\" }",
+    "",
+    "Never put email addresses or phone numbers in this file - it is public."
+  ],
+  "testimonials": []
+}

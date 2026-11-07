@@ -251,6 +251,14 @@ body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background-color:
   </div>
 </section>
 
+<!-- What people say: filled from testimonials.json, hidden until it has entries -->
+<section id="testimonials" class="hidden max-w-6xl mx-auto px-6 py-16">
+  <h2 class="text-3xl md:text-4xl font-bold text-white mb-3 text-center">What people say</h2>
+  <p class="text-gray-400 text-center mb-8">From students, colleagues, teammates and professors I've worked with.</p>
+  <div id="tFilters" class="flex flex-wrap justify-center gap-2 mb-8"></div>
+  <div id="tGrid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
+</section>
+
 <!-- LinkedIn & Resume -->
 <section class="max-w-6xl mx-auto px-6 py-16" data-aos="fade-up">
   <h2 class="text-3xl md:text-4xl font-bold text-white mb-10 text-center">Let's Connect</h2>
@@ -404,5 +412,61 @@ spy.addEventListener("mouseenter",dodge);
 spy.addEventListener("click",dodge);
 </script>
 
+<script>
+// "What people say": renders testimonials.json. Edit that file to add quotes; nothing here needs changing.
+(function () {
+  var sec = document.getElementById('testimonials');
+  var grid = document.getElementById('tGrid');
+  var bar = document.getElementById('tFilters');
+  if (!sec || !grid || !bar) { return; }
+  var LABEL = { student: 'Students', colleague: 'Colleagues', teammate: 'Teammates',
+                professor: 'Professors', mentor: 'Mentors', manager: 'Managers' };
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function card(t) {
+    var rel = String(t.relationship || '').toLowerCase();
+    var name = esc(t.name);
+    if (t.link && /^https?:\/\//.test(t.link)) {
+      name = '<a href="' + esc(t.link) + '" target="_blank" rel="noopener" class="hover:text-purple-300">' + name + '</a>';
+    }
+    return '<figure class="t-card bg-gray-900 border border-gray-800 hover:border-purple-500 transition-colors rounded-2xl p-6 flex flex-col" data-rel="' + esc(rel) + '">' +
+      '<div class="text-5xl leading-none text-purple-500 font-serif mb-2" aria-hidden="true">&ldquo;</div>' +
+      '<blockquote class="text-gray-200 leading-relaxed flex-1">' + esc(t.quote) + '</blockquote>' +
+      '<figcaption class="mt-5 pt-4 border-t border-gray-800">' +
+        '<div class="text-white font-semibold">' + name + '</div>' +
+        (t.role ? '<div class="text-sm text-gray-400">' + esc(t.role) + '</div>' : '') +
+        ((LABEL[rel] || t.date) ? '<div class="text-xs text-cyan-400 tracking-wider uppercase mt-1">' +
+          esc([LABEL[rel] ? LABEL[rel].replace(/s$/, '') : '', t.date || ''].filter(Boolean).join(' \u00b7 ')) + '</div>' : '') +
+      '</figcaption></figure>';
+  }
+  fetch('testimonials.json', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      var list = ((d && d.testimonials) || []).filter(function (t) { return t && t.quote && t.name; });
+      if (!list.length) { return; }
+      grid.innerHTML = list.map(card).join('');
+      var kinds = [];
+      list.forEach(function (t) { var k = String(t.relationship || '').toLowerCase(); if (LABEL[k] && kinds.indexOf(k) === -1) { kinds.push(k); } });
+      if (kinds.length > 1) {
+        var btn = 'px-4 py-1.5 rounded-full text-sm border transition-colors ';
+        var on = 'bg-purple-600 border-purple-500 text-white', off = 'border-gray-700 text-gray-300 hover:border-purple-400';
+        bar.innerHTML = ['all'].concat(kinds).map(function (k, i) {
+          return '<button type="button" data-k="' + k + '" class="' + btn + (i ? off : on) + '">' + (k === 'all' ? 'All' : LABEL[k]) + '</button>';
+        }).join('');
+        bar.addEventListener('click', function (e) {
+          var b = e.target.closest('button'); if (!b) { return; }
+          var k = b.getAttribute('data-k');
+          [].forEach.call(bar.children, function (x) { x.className = btn + (x === b ? on : off); });
+          [].forEach.call(grid.children, function (c) { c.style.display = (k === 'all' || c.getAttribute('data-rel') === k) ? '' : 'none'; });
+        });
+      }
+      sec.classList.remove('hidden');
+    })
+    .catch(function () { /* no file or bad JSON: keep the section hidden */ });
+})();
+</script>
 </body>
 </html>
